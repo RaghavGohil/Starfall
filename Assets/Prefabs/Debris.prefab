@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 7650484463231415107}
   - component: {fileID: 714427426644904724}
   m_Layer: 0
-  m_Name: Square
+  m_Name: Debris
   m_TagString: blocks
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

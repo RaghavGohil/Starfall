@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class PlayerMovement : MonoBehaviour
+public sealed class PlayerMovement : MonoBehaviour
 {
 
     public Joystick joystick;
@@ -14,16 +14,13 @@ public class PlayerMovement : MonoBehaviour
 
     bool can_move = false;
     bool can_dash = false;
-    bool is_dashing = false;
+    public bool is_dashing { get; private set; } = false;
 
     public float move_speed;
     public float rot_speed;
     public float dash_speed;
     public float dash_cooldown;
     public float dash_time;
-
-    float double_tap_time_count = 0f;
-    float double_tap_time_threshold = 3f;
 
     Vector2 last_dir = Vector2.zero;
 
@@ -66,24 +63,12 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
-    private void FixedUpdate()
+    void FixedUpdate()
     {
         if (can_move)
         { 
             Move();
             Rotate();
-        }
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.transform.tag == "blocks" && !is_dashing) 
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        }
-        else if (is_dashing) 
-        {
-            collision.transform.GetComponent<DestroyBlock>().DestroyIt();
         }
     }
 

@@ -2,7 +2,7 @@
 
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+internal sealed class GameManager : MonoBehaviour
 {
     void Start()
     {

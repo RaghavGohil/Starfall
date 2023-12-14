@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using EZCameraShake;
 
-public class DestroyBlock : MonoBehaviour
+internal sealed class DestroyBlock : MonoBehaviour
 {
     ParticleSystem particleSystem;
 
-    private void Start()
+    void Start()
     {
         particleSystem = GetComponent<ParticleSystem>();
     }
