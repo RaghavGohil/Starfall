@@ -7,7 +7,8 @@ using UnityEngine;
 
 public class DialogueScreen : MonoBehaviour
 {
-    
+    [SerializeField]
+    GameObject gameControlUI;
     [SerializeField]
     GameObject dialogueScreen;
     [SerializeField]
@@ -42,8 +43,8 @@ public class DialogueScreen : MonoBehaviour
 
         dialogueComplete += DeactivateDialogueScreen;
         
-        string[] message = {"Hello there!", "Monke monke"};
-        StartCoroutine(StartSequence(message, 3f));
+        string[] message = { "Captain Ashish: (leaning back in the captain's chair in distress) \"Hey, Commander Sameer, I think we are doomed.\"", "Commander Sameer: \"Uh, Captain, we're on a critical mission to retrieve the alpha keys. So shut the fuck up.\"" };
+        StartCoroutine(StartSequence(message,5f));
     }
 
     public IEnumerator StartSequence(string[] message, float duration) 
@@ -62,11 +63,13 @@ public class DialogueScreen : MonoBehaviour
     void DeactivateDialogueScreen()
     {
         dialogueScreen.SetActive(false);
+        gameControlUI.SetActive(true);
     }
 
     public void OpenDialogueScreen() 
     {
         dialogueScreen.SetActive(true);
+        gameControlUI.SetActive(false);
         dialogueText.text = "";
         LeanTween.value(gameObject,anchoredPos1.y, anchoredPos1.y + cinematicBarRect1.rect.height + moveOffset,tweenTime)
             .setEase(tweenType).setOnUpdate((value) => 

@@ -39,7 +39,7 @@ public sealed class Shoot : MonoBehaviour, IShootable
 
     void Start()
     {
-        timeCount = 0f;
+        timeCount = 1f;
         timeout = 5f;
         hasPressedFire = false;
         activeProjectiles = new List<Projectile>();
@@ -53,7 +53,7 @@ public sealed class Shoot : MonoBehaviour, IShootable
 
     public void FireUp() 
     {
-        timeCount = 0f;
+        timeCount = 1f;
         hasPressedFire = false;
     }
 
@@ -64,8 +64,9 @@ public sealed class Shoot : MonoBehaviour, IShootable
             timeCount += Time.fixedDeltaTime * fireRate;
             if (timeCount > 1f)
             {
-                GameObject left = ProjectilePool.GetProjectile(leftShooter.transform.position);
-                GameObject right = ProjectilePool.GetProjectile(rightShooter.transform.position);
+                GameObject left = ProjectilePool.GetProjectile(leftShooter.transform.position, transform.rotation);
+                GameObject right = ProjectilePool.GetProjectile(rightShooter.transform.position, transform.rotation);
+                Debug.DrawRay(rightShooter.transform.position,rightShooter.transform.up,Color.blue);
                 if (left != null && right != null) 
                 {
                     activeProjectiles.Add(new Projectile(leftShooter.transform.up,left));
@@ -87,7 +88,7 @@ public sealed class Shoot : MonoBehaviour, IShootable
         {
             foreach (Projectile projectile in activeProjectiles) 
             {
-                projectile.obj.transform.Translate(projectile.dir*Time.deltaTime*speed);
+                projectile.obj.transform.position += (Vector3)projectile.dir*Time.deltaTime*speed;
                 projectile.time += Time.deltaTime;
                 if (projectile.time > timeout) 
                 { 

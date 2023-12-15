@@ -457,8 +457,8 @@ MonoBehaviour:
   leftShooter: {fileID: 611414336}
   rightShooter: {fileID: 954439142}
   activeProjectiles: []
-  fireRate: 2
-  speed: 6
+  fireRate: 5
+  speed: 7.5
 --- !u!114 &73518851
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1000,11 +1000,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38fa657c41f2a8b4594f9733ac08fb99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameControlUI: {fileID: 1430018160}
   dialogueScreen: {fileID: 494373203}
   cinematicBar1: {fileID: 528385137}
   cinematicBar2: {fileID: 448859069}
   dialogueText: {fileID: 133132724}
-  moveAmount: 200
+  moveOffset: 0
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -6639,7 +6640,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1430018161}
   m_Layer: 5
-  m_Name: GameUI
+  m_Name: GameControl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

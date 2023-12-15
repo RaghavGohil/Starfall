@@ -32,13 +32,14 @@ public sealed class ProjectilePool : MonoBehaviour
         }
     }
 
-    public static GameObject GetProjectile(Vector3 pos) 
+    public static GameObject GetProjectile(Vector3 pos,Quaternion rotation) 
     {
         if (used < numProjectiles) 
         {
             GameObject projectile = projectilePool.Pop();
             projectile.SetActive(true);
             projectile.transform.position = pos;
+            projectile.transform.rotation = rotation;
             used++;
             return projectile;
         }
