@@ -9,6 +9,7 @@ public class DialogueScreen : MonoBehaviour
 {
     [SerializeField]
     GameObject gameControlUI;
+    CanvasGroup gameControlCanvasGroup;
     [SerializeField]
     GameObject dialogueScreen;
     [SerializeField]
@@ -42,8 +43,10 @@ public class DialogueScreen : MonoBehaviour
         anchoredPos2 = cinematicBarRect2.anchoredPosition;
 
         dialogueComplete += DeactivateDialogueScreen;
+
+        gameControlCanvasGroup = gameControlUI.GetComponent<CanvasGroup>();
         
-        string[] message = { "Captain Ashish: (leaning back in the captain's chair in distress) \"Hey, Commander Sameer, I think we are doomed.\"", "Commander Sameer: \"Uh, Captain, we're on a critical mission to retrieve the alpha keys. So shut the fuck up.\"" };
+        string[] message = { "Captain Ashish: Hey, Commander Sameer, I think we are doomed.", "Commander Sameer: Uh, Captain, we're on a critical mission to retrieve the alpha keys. So please calm down." };
         StartCoroutine(StartSequence(message,5f));
     }
 
@@ -63,7 +66,6 @@ public class DialogueScreen : MonoBehaviour
     void DeactivateDialogueScreen()
     {
         dialogueScreen.SetActive(false);
-        gameControlUI.SetActive(true);
     }
 
     public void OpenDialogueScreen() 
@@ -71,6 +73,16 @@ public class DialogueScreen : MonoBehaviour
         dialogueScreen.SetActive(true);
         gameControlUI.SetActive(false);
         dialogueText.text = "";
+        LeanTween.value(gameObject, 1f, 0f, tweenTime)
+            .setEase(tweenType).setOnUpdate((value) =>
+            {
+                gameControlCanvasGroup.alpha = value;
+            });
+        LeanTween.value(gameObject, 0f, 1f, tweenTime)
+            .setEase(tweenType).setOnUpdate((value) =>
+            {
+                dialogueText.alpha = value;
+            });
         LeanTween.value(gameObject,anchoredPos1.y, anchoredPos1.y + cinematicBarRect1.rect.height + moveOffset,tweenTime)
             .setEase(tweenType).setOnUpdate((value) => 
             {
@@ -84,6 +96,17 @@ public class DialogueScreen : MonoBehaviour
     }
     public void CloseDialogueScreen() 
     {
+        gameControlUI.SetActive(true);
+        LeanTween.value(gameObject, 0f, 1f, tweenTime)
+            .setEase(tweenType).setOnUpdate((value) =>
+            {
+                gameControlCanvasGroup.alpha = value;
+            });
+        LeanTween.value(gameObject, 1f, 0f, tweenTime)
+            .setEase(tweenType).setOnUpdate((value) =>
+            {
+                dialogueText.alpha = value;
+            });
         LeanTween.value(gameObject, anchoredPos1.y + cinematicBarRect1.rect.height + moveOffset, anchoredPos1.y, tweenTime)
             .setEase(tweenType).setOnUpdate((value) =>
             {

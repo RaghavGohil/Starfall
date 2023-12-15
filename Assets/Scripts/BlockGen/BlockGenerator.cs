@@ -3,25 +3,42 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class BlockGenerator : MonoBehaviour
+[System.Serializable]
+internal sealed class Block 
 {
-    int blockAmount = 100;
-    public GameObject blockPrefab;
-    Vector2 position;
-    List<Vector2> positions;
+    public GameObject obj;
+    public byte amount;
+}
+
+internal sealed class BlockGenerator : MonoBehaviour
+{
+
+    [SerializeField]
+    Block[] blocks;
+
+    [SerializeField]
+    int threshold;
+
+    [SerializeField]
     int range;
+
+    Vector2 position;
 
     private void Start()
     {
-        range = 100;
-
-        for (int i = 0; i < blockAmount; i++) 
+        if (blocks.Length == 0) return;
+        foreach (Block block in blocks) 
         {
+            for (int i = 0; i < block.amount; i++) 
+            {
 
-            position = new Vector2(Random.Range(-range, range), Random.Range(-range, range));
+                float x = Random.Range(-range, range);
+                float y = (x<threshold && x>(-threshold)) ? (Random.Range(0, 2) == 0) ? Random.Range(-range, -threshold) : Random.Range(threshold, range)
+                    : Random.Range(-range, range);
+                position = new Vector2(x, y);
+                GameObject g = Instantiate(block.obj,position,Quaternion.identity,transform); // or should we get powers by dashing through the enemies?
 
-            GameObject g = Instantiate(blockPrefab,position,Quaternion.identity); // or should we get powers by dashing through the enemies?
-
+            }
         }
     }
 

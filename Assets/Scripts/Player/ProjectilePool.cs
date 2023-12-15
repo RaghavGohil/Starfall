@@ -26,7 +26,7 @@ public sealed class ProjectilePool : MonoBehaviour
     {
         for (int i = 0; i < numProjectiles; i++)
         {
-            GameObject newProjectile = Instantiate(projectile);
+            GameObject newProjectile = Instantiate(projectile,transform);
             newProjectile.SetActive(false);
             projectilePool.Push(newProjectile);
         }
