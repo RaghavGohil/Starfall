@@ -4,7 +4,11 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - blocks
+  - boomBlock
+  - debrisBlock
+  - fuelBlock
+  - sheildBlock
+  - speedBlock
   layers:
   - Default
   - TransparentFX
