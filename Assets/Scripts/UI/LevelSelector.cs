@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Helper;
 
-public class LevelSelector : MonoBehaviour
+internal sealed class LevelSelector : MonoBehaviour
 {
 
     static int numPlanets;

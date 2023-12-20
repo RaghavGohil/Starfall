@@ -36,7 +36,7 @@ internal sealed class BlockGenerator : MonoBehaviour
                 float y = (x<threshold && x>(-threshold)) ? (Random.Range(0, 2) == 0) ? Random.Range(-range, -threshold) : Random.Range(threshold, range)
                     : Random.Range(-range, range);
                 position = new Vector2(x, y);
-                GameObject g = Instantiate(block.obj,position,Quaternion.identity,transform); // or should we get powers by dashing through the enemies?
+                GameObject g = Instantiate(block.obj,position,new Quaternion(transform.rotation.x, transform.rotation.y, Random.Range(0f,1f), transform.rotation.w),transform); // or should we get powers by dashing through the enemies?
 
             }
         }

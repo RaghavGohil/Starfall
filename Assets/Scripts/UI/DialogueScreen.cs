@@ -5,7 +5,7 @@ using System.Xml.Linq;
 using TMPro;
 using UnityEngine;
 
-public class DialogueScreen : MonoBehaviour
+internal sealed class DialogueScreen : MonoBehaviour
 {
     [SerializeField]
     GameObject gameControlUI;
@@ -46,7 +46,7 @@ public class DialogueScreen : MonoBehaviour
 
         gameControlCanvasGroup = gameControlUI.GetComponent<CanvasGroup>();
         
-        string[] message = { "Captain Ashish: Hey, Commander Sameer, I think we are doomed.", "Commander Sameer: Uh, Captain, we're on a critical mission to retrieve the alpha keys. So please calm down." };
+        string[] message = { "Captain Ashish: So we have to destroy the alien ships to retrieve the alpha keys?", "Commander Sameer: Yes. All 5 planets store a key. If we retrieve it, we can revive the world.", "Captain Ashish: Sounds great!" , "Captain Sameer: You can dash through the floating blocks to get abilities.", "Captain Ashish: Yeah. It's the left button."};
         StartCoroutine(StartSequence(message,5f));
     }
 

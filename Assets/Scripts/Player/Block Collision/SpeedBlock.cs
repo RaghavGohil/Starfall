@@ -1,16 +1,20 @@
 using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using Cinemachine;
 
-internal sealed class BlockCollision : MonoBehaviour
+internal sealed class SpeedBlock : MonoBehaviour
 {
-    PlayerMovement playerMovementScript;
 
     [Header("Speed Block Configuration")]
     [SerializeField]
     float speedIncrease;
     [SerializeField]
     float speedTime;
+    [SerializeField]
+    float speedOrthoSize;
+    [SerializeField]
+    float speedOrthoTime;
     [SerializeField]
     TrailRenderer lightTrail;
     [SerializeField]
@@ -24,45 +28,39 @@ internal sealed class BlockCollision : MonoBehaviour
     [SerializeField]
     Gradient speedSmoke;
     [SerializeField]
-    Gradient sGradient;
-    [SerializeField]
     float speedColorTweenTime;
+    CinemachineVirtualCamera vCam;
     bool speedExec = false;
 
-
-    void Start() => playerMovementScript = gameObject.GetComponent<PlayerMovement>();
+    void Awake()
+    {
+        vCam = GameObject.FindGameObjectWithTag("vCam").GetComponent<CinemachineVirtualCamera>(); // set vCam tag in unity
+    }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (playerMovementScript.is_dashing) 
+        if ((PlayerMovement.instance.is_dashing || speedExec == true) && collision.transform.tag == "speedBlock")
         {
-            switch (collision.transform.tag) 
-            {
-                case "debrisBlock":
-                    collision.transform.GetComponent<DestroyBlock>().DestroyIt();
-                    break;
-                case "speedBlock":
-                    if(!speedExec)
-                        StartCoroutine(speedBlock());
-                    collision.transform.GetComponent<DestroyBlock>().DestroyIt();
-                    break;
-            }
+            if (!speedExec)
+                StartCoroutine(speedBlock());
+            collision.transform.GetComponent<DestroyBlock>().DestroyIt();
         }
-        else
+        else if(collision.transform.tag == "speedBlock" && !PlayerMovement.instance.is_dashing)
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     IEnumerator speedBlock()
     {
         speedExec = true;
-        playerMovementScript.move_speed += speedIncrease;
-        playerMovementScript.dash_speed += speedIncrease;
+        PlayerMovement.instance.move_speed += speedIncrease;
+        PlayerMovement.instance.dash_speed += speedIncrease;
         Gradient lightGradient = lightTrail.colorGradient;
         Gradient darkGradient = darkTrail.colorGradient;
         Gradient smokeGradient = smoke.colorOverLifetime.color.gradient;
         var smokeColor = smoke.colorOverLifetime;
         smokeColor.enabled = true;
-        sGradient = smoke.colorOverLifetime.color.gradient;
+        Gradient sGradient = smoke.colorOverLifetime.color.gradient;
+        float orthoSize = vCam.m_Lens.OrthographicSize;
         
         LeanTween.value(gameObject, (Color value) => { sGradient.SetKeys(new GradientColorKey[] { new GradientColorKey(value, speedSmoke.colorKeys[0].time), sGradient.colorKeys[1] }, sGradient.alphaKeys); smokeColor.color = sGradient; }, smokeGradient.colorKeys[0].color, speedSmoke.colorKeys[0].color,speedColorTweenTime).setEase(LeanTweenType.easeOutCirc);
         LeanTween.value(gameObject, (Color value) => { sGradient.SetKeys(new GradientColorKey[] { sGradient.colorKeys[0] , new GradientColorKey(value, speedSmoke.colorKeys[1].time) }, sGradient.alphaKeys); smokeColor.color = sGradient; }, smokeGradient.colorKeys[1].color, speedSmoke.colorKeys[1].color, speedColorTweenTime).setEase(LeanTweenType.easeOutCirc);
@@ -72,7 +70,9 @@ internal sealed class BlockCollision : MonoBehaviour
         LeanTween.value(gameObject, (Color value) => { darkTrail.startColor = value; }, darkGradient.colorKeys[0].color, speedDark.colorKeys[0].color,speedColorTweenTime).setEase(LeanTweenType.easeOutCirc);
         LeanTween.value(gameObject, (Color value) => { lightTrail.endColor = value; }, lightGradient.colorKeys[1].color, speedLight.colorKeys[1].color, speedColorTweenTime).setEase(LeanTweenType.easeOutCirc);
         LeanTween.value(gameObject, (Color value) => { darkTrail.endColor = value; }, darkGradient.colorKeys[1].color, speedDark.colorKeys[1].color, speedColorTweenTime).setEase(LeanTweenType.easeOutCirc);
-        
+
+        LeanTween.value(gameObject, (float value) => { vCam.m_Lens.OrthographicSize = value; }, orthoSize , speedOrthoSize , speedOrthoTime).setEase(LeanTweenType.easeOutCirc);
+
         yield return new WaitForSeconds(speedTime);
 
         LeanTween.value(gameObject, (Color value) => { sGradient.SetKeys(new GradientColorKey[] { new GradientColorKey(value, smokeGradient.colorKeys[0].time), sGradient.colorKeys[1] }, sGradient.alphaKeys); smokeColor.color = sGradient; }, speedSmoke.colorKeys[0].color, smokeGradient.colorKeys[0].color, speedColorTweenTime).setEase(LeanTweenType.easeOutCirc);
@@ -82,9 +82,11 @@ internal sealed class BlockCollision : MonoBehaviour
         LeanTween.value(gameObject, (Color value) => { darkTrail.startColor = value; }, speedDark.colorKeys[0].color, darkGradient.colorKeys[0].color, speedColorTweenTime).setEase(LeanTweenType.easeOutCirc );
         LeanTween.value(gameObject, (Color value) => { lightTrail.endColor = value; }, speedLight.colorKeys[1].color, lightGradient.colorKeys[1].color, speedColorTweenTime).setEase(LeanTweenType.easeOutCirc);
         LeanTween.value(gameObject, (Color value) => { darkTrail.endColor = value; }, speedDark.colorKeys[1].color, darkGradient.colorKeys[1].color, speedColorTweenTime).setEase(LeanTweenType.easeOutCirc);
-        
-        playerMovementScript.move_speed -= speedIncrease;
-        playerMovementScript.dash_speed -= speedIncrease;
+
+        LeanTween.value(gameObject, (float value) => { vCam.m_Lens.OrthographicSize = value; }, speedOrthoSize, orthoSize, speedOrthoTime).setEase(LeanTweenType.easeOutCirc);
+
+        PlayerMovement.instance.move_speed -= speedIncrease;
+        PlayerMovement.instance.dash_speed -= speedIncrease;
         speedExec = false;
     }
 }

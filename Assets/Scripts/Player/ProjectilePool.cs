@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public sealed class ProjectilePool : MonoBehaviour
+internal sealed class ProjectilePool : MonoBehaviour
 {
     [SerializeField]
     GameObject projectile;

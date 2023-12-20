@@ -3,8 +3,9 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public sealed class PlayerMovement : MonoBehaviour
+internal sealed class PlayerMovement : MonoBehaviour
 {
+    public static PlayerMovement instance { get; private set; }
 
     public Joystick joystick;
     public Transform ship;
@@ -23,6 +24,16 @@ public sealed class PlayerMovement : MonoBehaviour
     public float dash_time;
 
     Vector2 last_dir = Vector2.zero;
+
+    void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+            Destroy(instance);
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -74,7 +85,7 @@ public sealed class PlayerMovement : MonoBehaviour
 
     IEnumerator StartMovement() 
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(10f);
         fire.Play();
         can_move = true;
         can_dash = true;

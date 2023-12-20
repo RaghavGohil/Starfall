@@ -17,7 +17,7 @@ internal sealed class Projectile
     }
 }
 
-public sealed class Shoot : MonoBehaviour, IShootable
+internal sealed class Shoot : MonoBehaviour
 {
     [SerializeField]
     GameObject leftShooter;

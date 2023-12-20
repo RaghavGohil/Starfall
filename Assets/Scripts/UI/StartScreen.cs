@@ -1,8 +1,8 @@
-using System.Xml.Serialization;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
-public class StartScreen : MonoBehaviour
+internal sealed class StartScreen : MonoBehaviour
 {
 
     [SerializeField]

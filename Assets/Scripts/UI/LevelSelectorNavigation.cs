@@ -3,7 +3,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class LevelSelectorNavigation : MonoBehaviour, IEndDragHandler
+internal sealed class LevelSelectorNavigation : MonoBehaviour, IEndDragHandler
 {
 
     [SerializeField] int maxPage;

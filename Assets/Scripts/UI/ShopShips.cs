@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ShopShips : MonoBehaviour
+internal sealed class ShopShips : MonoBehaviour
 {
 
     [SerializeField]

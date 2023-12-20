@@ -6,7 +6,7 @@ internal sealed class GameManager : MonoBehaviour
 {
     void Start()
     {
-        LevelSelector.SetLevelLocks();        
+        LevelSelector.SetLevelLocks();    
     }
 
     void Update()
