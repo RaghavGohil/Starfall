@@ -7,21 +7,35 @@ internal sealed class PlayerMovement : MonoBehaviour
 {
     public static PlayerMovement instance { get; private set; }
 
-    public Joystick joystick;
-    public Transform ship;
-    public ParticleSystem fire;
+    [SerializeField]
+    Joystick joystick;
+    [SerializeField]
+    Transform ship;
+    [SerializeField]
+    ParticleSystem fire;
 
     Rigidbody2D player_rb;
 
     bool can_move = false;
     bool can_dash = false;
+    bool speedBoost;
     public bool is_dashing { get; private set; } = false;
 
-    public float move_speed;
-    public float rot_speed;
-    public float dash_speed;
-    public float dash_cooldown;
-    public float dash_time;
+    [SerializeField]
+    float max_move_speed;
+    [SerializeField]
+    float min_move_speed;
+    [SerializeField]
+    float speedBoostAmount;
+
+    [SerializeField]
+    float rot_speed;
+    [SerializeField]
+    float dash_speed;
+    [SerializeField]
+    float dash_cooldown;
+    [SerializeField]
+    float dash_time;
 
     Vector2 last_dir = Vector2.zero;
 
@@ -40,6 +54,7 @@ internal sealed class PlayerMovement : MonoBehaviour
     {
         //initialize
         player_rb = GetComponent<Rigidbody2D>();
+        speedBoost = false;
         fire.Stop();
 
         //wait on start
@@ -48,19 +63,40 @@ internal sealed class PlayerMovement : MonoBehaviour
 
     void Move() 
     {
-        if(!is_dashing)
-            player_rb.velocity = ((Vector2)ship.transform.up)* Time.fixedDeltaTime * move_speed;
-        else
-            player_rb.velocity = ((Vector2)ship.transform.up) * Time.fixedDeltaTime * dash_speed;
+        if (!speedBoost)
+        {
+            if (!is_dashing)
+                player_rb.velocity = ((Vector2)ship.transform.up) * Mathf.Lerp(min_move_speed, max_move_speed, joystick.Direction.magnitude) * Time.fixedDeltaTime;
+            else
+                player_rb.velocity = ((Vector2)ship.transform.up) * Time.fixedDeltaTime * dash_speed;
+        }
+        else 
+        {
+            player_rb.velocity = ((Vector2)ship.transform.up) * max_move_speed * Time.fixedDeltaTime;
+        }
+        
+    }
 
-        Debug.DrawRay(transform.position,transform.up,Color.red);
+    public void BoostSpeed() 
+    {
+        speedBoost = true;
+        max_move_speed += speedBoostAmount;
+        dash_speed += speedBoostAmount;
+        
+    }
+
+    public void UnBoostSpeed()
+    {
+        speedBoost = false;
+        max_move_speed -= speedBoostAmount;
+        dash_speed -= speedBoostAmount;
     }
 
     void Rotate() 
     {
         ship.rotation = Quaternion.Slerp(ship.rotation, Quaternion.FromToRotation(Vector3.up, last_dir), Time.fixedDeltaTime * rot_speed);
         if (joystick.Direction != Vector2.zero)
-            last_dir = joystick.Direction.normalized;
+            last_dir = joystick.Direction;
     }
 
     public void Dash() // ON UI
@@ -85,7 +121,7 @@ internal sealed class PlayerMovement : MonoBehaviour
 
     IEnumerator StartMovement() 
     {
-        yield return new WaitForSeconds(10f);
+        yield return new WaitForSeconds(1f);
         fire.Play();
         can_move = true;
         can_dash = true;

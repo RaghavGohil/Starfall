@@ -8,8 +8,6 @@ internal sealed class SpeedBlock : MonoBehaviour
 
     [Header("Speed Block Configuration")]
     [SerializeField]
-    float speedIncrease;
-    [SerializeField]
     float speedTime;
     [SerializeField]
     float speedOrthoSize;
@@ -37,23 +35,22 @@ internal sealed class SpeedBlock : MonoBehaviour
         vCam = GameObject.FindGameObjectWithTag("vCam").GetComponent<CinemachineVirtualCamera>(); // set vCam tag in unity
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
+    void OnTriggerEnter2D(Collider2D collider)
     {
-        if ((PlayerMovement.instance.is_dashing || speedExec == true) && collision.transform.tag == "speedBlock")
+        if ((PlayerMovement.instance.is_dashing || speedExec == true) && collider.transform.tag == "speedBlock")
         {
             if (!speedExec)
                 StartCoroutine(speedBlock());
-            collision.transform.GetComponent<DestroyBlock>().DestroyIt();
+            collider.transform.GetComponent<DestroyBlock>().DestroyIt();
         }
-        else if(collision.transform.tag == "speedBlock" && !PlayerMovement.instance.is_dashing)
+        else if(collider.transform.tag == "speedBlock" && !PlayerMovement.instance.is_dashing)
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     IEnumerator speedBlock()
     {
         speedExec = true;
-        PlayerMovement.instance.move_speed += speedIncrease;
-        PlayerMovement.instance.dash_speed += speedIncrease;
+        PlayerMovement.instance.BoostSpeed();
         Gradient lightGradient = lightTrail.colorGradient;
         Gradient darkGradient = darkTrail.colorGradient;
         Gradient smokeGradient = smoke.colorOverLifetime.color.gradient;
@@ -85,8 +82,7 @@ internal sealed class SpeedBlock : MonoBehaviour
 
         LeanTween.value(gameObject, (float value) => { vCam.m_Lens.OrthographicSize = value; }, speedOrthoSize, orthoSize, speedOrthoTime).setEase(LeanTweenType.easeOutCirc);
 
-        PlayerMovement.instance.move_speed -= speedIncrease;
-        PlayerMovement.instance.dash_speed -= speedIncrease;
+        PlayerMovement.instance.UnBoostSpeed();
         speedExec = false;
     }
 }

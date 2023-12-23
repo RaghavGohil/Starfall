@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UIElements;
 
 [System.Serializable]
-internal sealed class Block 
+internal struct Block 
 {
     public GameObject obj;
     public byte amount;
