@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
 using Cinemachine;
+using EZCameraShake;
 
 internal sealed class SpeedBlock : MonoBehaviour
 {
@@ -27,30 +28,44 @@ internal sealed class SpeedBlock : MonoBehaviour
     Gradient speedSmoke;
     [SerializeField]
     float speedColorTweenTime;
+    [SerializeField]
+    ParticleSystem speedLines;
     CinemachineVirtualCamera vCam;
     bool speedExec = false;
+
+    PlayerMovement playerMovementScript;
+    [SerializeField]
+    StatusText statusTextScript;
 
     void Awake()
     {
         vCam = GameObject.FindGameObjectWithTag("vCam").GetComponent<CinemachineVirtualCamera>(); // set vCam tag in unity
     }
 
+    private void Start()
+    {
+        playerMovementScript = GetComponent<PlayerMovement>();
+    }
+
     void OnTriggerEnter2D(Collider2D collider)
     {
-        if ((PlayerMovement.instance.is_dashing || speedExec == true) && collider.transform.tag == "speedBlock")
+        if ((playerMovementScript.is_dashing || speedExec == true) && collider.transform.tag == "speedBlock")
         {
             if (!speedExec)
                 StartCoroutine(speedBlock());
             collider.transform.GetComponent<DestroyBlock>().DestroyIt();
         }
-        else if(collider.transform.tag == "speedBlock" && !PlayerMovement.instance.is_dashing)
+        else if(collider.transform.tag == "speedBlock" && !playerMovementScript.is_dashing)
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     IEnumerator speedBlock()
     {
         speedExec = true;
-        PlayerMovement.instance.BoostSpeed();
+        StartCoroutine(statusTextScript.StartAnimation("EXTRA SPEED!"));
+        StartCoroutine(CineMachineCameraShaker.Instance.ShakeOnce(2f,0.2f));
+        speedLines.Play();
+        playerMovementScript.BoostSpeed();
         Gradient lightGradient = lightTrail.colorGradient;
         Gradient darkGradient = darkTrail.colorGradient;
         Gradient smokeGradient = smoke.colorOverLifetime.color.gradient;
@@ -82,7 +97,7 @@ internal sealed class SpeedBlock : MonoBehaviour
 
         LeanTween.value(gameObject, (float value) => { vCam.m_Lens.OrthographicSize = value; }, speedOrthoSize, orthoSize, speedOrthoTime).setEase(LeanTweenType.easeOutCirc);
 
-        PlayerMovement.instance.UnBoostSpeed();
+        playerMovementScript.UnBoostSpeed();
         speedExec = false;
     }
 }

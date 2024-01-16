@@ -1,5 +1,6 @@
 // This script manages the navigation part of the level selector.
 
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -15,6 +16,8 @@ internal sealed class LevelSelectorNavigation : MonoBehaviour, IEndDragHandler
     [SerializeField] float tweenTime;
 
     [SerializeField] LeanTweenType tweenType;
+
+    LTDescr tween;
 
     float dragThreshold;
 
@@ -47,7 +50,9 @@ internal sealed class LevelSelectorNavigation : MonoBehaviour, IEndDragHandler
 
     void MovePage()
     {
-        levelPagesRect.LeanMoveLocal(targetPos,tweenTime).setEase(tweenType);
+        if(tween != null)
+            tween.reset();
+        tween = levelPagesRect.LeanMoveLocal(targetPos,tweenTime).setEase(tweenType);
     }
 
     public void OnEndDrag(PointerEventData pointerEventData) 

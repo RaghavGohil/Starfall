@@ -19,10 +19,7 @@ internal sealed class Projectile
 
 internal sealed class Shoot : MonoBehaviour
 {
-    [SerializeField]
-    GameObject leftShooter;
-    [SerializeField]
-    GameObject rightShooter;
+    GameObject shooter;
 
     [SerializeField]
     List<Projectile> activeProjectiles;
@@ -44,6 +41,7 @@ internal sealed class Shoot : MonoBehaviour
         hasPressedFire = false;
         activeProjectiles = new List<Projectile>();
         removeList = new List<Projectile>();
+        shooter = transform.gameObject;
     }
 
     public void FireDown()
@@ -64,13 +62,11 @@ internal sealed class Shoot : MonoBehaviour
             timeCount += Time.fixedDeltaTime * fireRate;
             if (timeCount > 1f)
             {
-                GameObject left = ProjectilePool.GetProjectile(leftShooter.transform.position, transform.rotation);
-                GameObject right = ProjectilePool.GetProjectile(rightShooter.transform.position, transform.rotation);
-                Debug.DrawRay(rightShooter.transform.position,rightShooter.transform.up,Color.blue);
-                if (left != null && right != null) 
+                GameObject _shooter = ProjectilePool.GetProjectile(shooter.transform.position, transform.rotation);
+                Debug.DrawRay(shooter.transform.position,shooter.transform.up,Color.blue);
+                if (_shooter != null) 
                 {
-                    activeProjectiles.Add(new Projectile(leftShooter.transform.up,left));
-                    activeProjectiles.Add(new Projectile(rightShooter.transform.up,right));
+                    activeProjectiles.Add(new Projectile(shooter.transform.up,_shooter));
                 }
                 timeCount = 0f;
             }

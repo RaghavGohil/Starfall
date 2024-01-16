@@ -5,14 +5,12 @@ using UnityEngine.SceneManagement;
 [RequireComponent(typeof(Rigidbody2D))]
 internal sealed class PlayerMovement : MonoBehaviour
 {
-    public static PlayerMovement instance { get; private set; }
-
     [SerializeField]
     Joystick joystick;
     [SerializeField]
     Transform ship;
     [SerializeField]
-    ParticleSystem fire;
+    ParticleSystem smoke;
 
     Rigidbody2D player_rb;
 
@@ -39,23 +37,13 @@ internal sealed class PlayerMovement : MonoBehaviour
 
     Vector2 last_dir = Vector2.zero;
 
-    void Awake()
-    {
-        if (instance == null)
-        {
-            instance = this;
-        }
-        else
-            Destroy(instance);
-    }
-
     // Start is called before the first frame update
     void Start()
     {
         //initialize
         player_rb = GetComponent<Rigidbody2D>();
         speedBoost = false;
-        fire.Stop();
+        smoke.Stop();
 
         //wait on start
         StartCoroutine(StartMovement());
@@ -63,16 +51,16 @@ internal sealed class PlayerMovement : MonoBehaviour
 
     void Move() 
     {
-        if (!speedBoost)
+        if (!is_dashing)
         {
-            if (!is_dashing)
+            if (!speedBoost)
                 player_rb.velocity = ((Vector2)ship.transform.up) * Mathf.Lerp(min_move_speed, max_move_speed, joystick.Direction.magnitude) * Time.fixedDeltaTime;
             else
-                player_rb.velocity = ((Vector2)ship.transform.up) * Time.fixedDeltaTime * dash_speed;
+                player_rb.velocity = ((Vector2)ship.transform.up) * max_move_speed * Time.fixedDeltaTime;
         }
         else 
         {
-            player_rb.velocity = ((Vector2)ship.transform.up) * max_move_speed * Time.fixedDeltaTime;
+            player_rb.velocity = ((Vector2)ship.transform.up) * Time.fixedDeltaTime * dash_speed;
         }
         
     }
@@ -122,7 +110,7 @@ internal sealed class PlayerMovement : MonoBehaviour
     IEnumerator StartMovement() 
     {
         yield return new WaitForSeconds(1f);
-        fire.Play();
+        smoke.Play();
         can_move = true;
         can_dash = true;
     }
