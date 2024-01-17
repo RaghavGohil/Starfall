@@ -28,14 +28,12 @@ internal sealed class SpeedBlock : MonoBehaviour
     Gradient speedSmoke;
     [SerializeField]
     float speedColorTweenTime;
-    [SerializeField]
-    ParticleSystem speedLines;
+    public ParticleSystem speedLines;
     CinemachineVirtualCamera vCam;
     bool speedExec = false;
 
     PlayerMovement playerMovementScript;
-    [SerializeField]
-    StatusText statusTextScript;
+    public StatusText statusTextScript;
 
     void Awake()
     {

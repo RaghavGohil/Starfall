@@ -5,8 +5,7 @@ using UnityEngine.SceneManagement;
 [RequireComponent(typeof(Rigidbody2D))]
 internal sealed class PlayerMovement : MonoBehaviour
 {
-    [SerializeField]
-    Joystick joystick;
+    public Joystick joystick;
     [SerializeField]
     Transform ship;
     [SerializeField]
