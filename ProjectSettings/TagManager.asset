@@ -11,6 +11,7 @@ TagManager:
   - speedBlock
   - vCam
   - worldBoundary
+  - coin
   layers:
   - Default
   - TransparentFX
@@ -56,4 +57,7 @@ TagManager:
     locked: 0
   - name: Enemy
     uniqueID: 2999712187
+    locked: 0
+  - name: FX
+    uniqueID: 3031608631
     locked: 0

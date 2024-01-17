@@ -1,6 +1,5 @@
 // This script manages the navigation part of the level selector.
 
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 

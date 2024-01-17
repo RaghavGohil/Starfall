@@ -17,6 +17,9 @@ internal sealed class LevelSelector : MonoBehaviour
     Button[] buttons;
 
     [SerializeField]
+    TMP_Text coinText;
+
+    [SerializeField]
     GameObject shopShipsMenu;
 
 

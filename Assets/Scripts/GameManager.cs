@@ -8,9 +8,4 @@ internal sealed class GameManager : MonoBehaviour
     {
         LevelSelector.SetLevelLocks();    
     }
-
-    void Update()
-    {
-        
-    }
 }
