@@ -13,15 +13,13 @@ internal sealed class LevelSelector : MonoBehaviour
 
     static bool[] levelLocks;
 
-    [SerializeField]
-    Button[] buttons;
+    [SerializeField] Button[] buttons;
 
-    [SerializeField]
-    TMP_Text coinText;
+    [SerializeField] TMP_Text coinText;
 
-    [SerializeField]
-    GameObject shopShipsMenu;
+    [SerializeField] GameObject shopShipsMenu;
 
+    [SerializeField] AsyncLoadManager loadManager;
 
     void Awake()
     {
@@ -50,19 +48,12 @@ internal sealed class LevelSelector : MonoBehaviour
 
     public void UnlockLevel(int i) 
     {
-        LevelSelector.levelLocks[i] = true;
+        levelLocks[i] = true;
     }
 
     public void PlayLevel(int i) 
     {
-        try
-        {
-            SceneManager.LoadScene($"Level{i}");
-        }
-        catch
-        {
-            Logging.Log($"Error loading level {i}.",2);
-        }
+            StartCoroutine(loadManager.LoadAsync(i));
     }
 
     public void Back() 
