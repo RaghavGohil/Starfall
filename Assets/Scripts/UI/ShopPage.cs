@@ -9,6 +9,7 @@ internal sealed class ShopPage : MonoBehaviour
     [SerializeField] TMP_Text description;
     [SerializeField] Image shipImage;
     [SerializeField] TMP_Text buyButtonText;
+    [SerializeField] CoinUpdater coinUpdaterInstance;
     [HideInInspector] public ShopShips shopShipsScript;
     public void SetShipData(ShipSO s)
     {
@@ -36,7 +37,7 @@ internal sealed class ShopPage : MonoBehaviour
             PurchaseShipsManager.equippedShipId = ship.id;
             PurchaseShipsManager.SaveData();
             buyButtonText.text = "EQUIPPED";
-            shopShipsScript.SetCoinText();
+            coinUpdaterInstance.SetCoinText();
             shopShipsScript.UpdateBuyingDataForAll();
         }
         else if (CoinManager.GetAmount() >= ship.price && ship.id != PurchaseShipsManager.equippedShipId)
@@ -46,7 +47,7 @@ internal sealed class ShopPage : MonoBehaviour
             PurchaseShipsManager.equippedShipId = ship.id;
             PurchaseShipsManager.SaveData();
             buyButtonText.text = "EQUIPPED";
-            shopShipsScript.SetCoinText();
+            coinUpdaterInstance.SetCoinText();
             shopShipsScript.UpdateBuyingDataForAll();
         }
 

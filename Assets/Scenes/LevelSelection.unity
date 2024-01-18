@@ -159,7 +159,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.000061035156}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1845023
@@ -958,6 +958,8 @@ GameObject:
   - component: {fileID: 218259176}
   - component: {fileID: 218259179}
   - component: {fileID: 218259180}
+  - component: {fileID: 218259182}
+  - component: {fileID: 218259181}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1061,6 +1063,43 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &218259181
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 218259174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd97530af2d6f3c479e79250844df611, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shopShipsCoinText: {fileID: 286593580}
+  levelSelectorCoinText: {fileID: 1668023540}
+--- !u!114 &218259182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 218259174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56276d0805ecc7e48b56e734791db017, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ships:
+  - {fileID: 11400000, guid: 1845a7a61cf805242853f991c72d1f33, type: 2}
+  - {fileID: 11400000, guid: 4d58ebee48c6c2d44aa60230ee6e7451, type: 2}
+  - {fileID: 11400000, guid: b623a5fffaea4d048bda713287ce8445, type: 2}
+  - {fileID: 11400000, guid: e9f8abca69dca07439542512669a8306, type: 2}
+  - {fileID: 11400000, guid: ac3773b19d1b5474ba868e6f757c9202, type: 2}
+  - {fileID: 11400000, guid: f771f052db99b9b48ac2603caea5dc7f, type: 2}
+  - {fileID: 11400000, guid: f192c578647b5df4a91fd4ccb5957a7f, type: 2}
+  - {fileID: 11400000, guid: 88519219ffbdf424582e83269671e542, type: 2}
+  - {fileID: 11400000, guid: 59178a024e095a94083911e34c707591, type: 2}
+  - {fileID: 11400000, guid: 4a01c03c15385a145919db891f93dffb, type: 2}
 --- !u!1 &238087596
 GameObject:
   m_ObjectHideFlags: 0
@@ -1614,6 +1653,7 @@ MonoBehaviour:
   description: {fileID: 1801750978}
   shipImage: {fileID: 1147655705}
   buyButtonText: {fileID: 766537584}
+  coinUpdaterInstance: {fileID: 0}
   shopShipsScript: {fileID: 0}
 --- !u!1 &345985782
 GameObject:
@@ -2759,6 +2799,7 @@ MonoBehaviour:
   description: {fileID: 0}
   shipImage: {fileID: 0}
   buyButtonText: {fileID: 0}
+  coinUpdaterInstance: {fileID: 0}
   shopShipsScript: {fileID: 0}
 --- !u!1 &467338955
 GameObject:
@@ -2795,7 +2836,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.02331543, y: 0}
+  m_AnchoredPosition: {x: 0.02319336, y: 0}
   m_SizeDelta: {x: 0.04663086, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &470095514
@@ -3610,19 +3651,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelSelector: {fileID: 2084900319}
-  ships:
-  - {fileID: 11400000, guid: 1845a7a61cf805242853f991c72d1f33, type: 2}
-  - {fileID: 11400000, guid: 4d58ebee48c6c2d44aa60230ee6e7451, type: 2}
-  - {fileID: 11400000, guid: b623a5fffaea4d048bda713287ce8445, type: 2}
-  - {fileID: 11400000, guid: e9f8abca69dca07439542512669a8306, type: 2}
-  - {fileID: 11400000, guid: ac3773b19d1b5474ba868e6f757c9202, type: 2}
-  - {fileID: 11400000, guid: f771f052db99b9b48ac2603caea5dc7f, type: 2}
-  - {fileID: 11400000, guid: f192c578647b5df4a91fd4ccb5957a7f, type: 2}
-  - {fileID: 11400000, guid: 88519219ffbdf424582e83269671e542, type: 2}
-  - {fileID: 11400000, guid: 59178a024e095a94083911e34c707591, type: 2}
-  - {fileID: 11400000, guid: 4a01c03c15385a145919db891f93dffb, type: 2}
-  shopShipsCoinText: {fileID: 286593580}
-  levelSelectorCoinText: {fileID: 1668023540}
+  loadShipDataScript: {fileID: 0}
   pagePrefab: {fileID: 5519244714287451086, guid: e901b8fe328196e40bd818846221d663, type: 3}
   pageParentLG: {fileID: 463840234}
 --- !u!1 &578891967
@@ -4185,7 +4214,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 120, y: -63.360474}
+  m_AnchoredPosition: {x: 120, y: -63.36035}
   m_SizeDelta: {x: 153, y: 126.7479}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &690471787
@@ -4798,6 +4827,7 @@ MonoBehaviour:
   description: {fileID: 0}
   shipImage: {fileID: 0}
   buyButtonText: {fileID: 0}
+  coinUpdaterInstance: {fileID: 0}
   shopShipsScript: {fileID: 0}
 --- !u!114 &769454765
 MonoBehaviour:
@@ -6180,6 +6210,7 @@ MonoBehaviour:
   description: {fileID: 823674759}
   shipImage: {fileID: 1198556238}
   buyButtonText: {fileID: 1313749796}
+  coinUpdaterInstance: {fileID: 0}
   shopShipsScript: {fileID: 0}
 --- !u!1 &999079043
 GameObject:
@@ -6238,6 +6269,7 @@ MonoBehaviour:
   description: {fileID: 1848021739}
   shipImage: {fileID: 1304683089}
   buyButtonText: {fileID: 858083293}
+  coinUpdaterInstance: {fileID: 0}
   shopShipsScript: {fileID: 0}
 --- !u!1 &1005304105
 GameObject:
@@ -6625,10 +6657,10 @@ RectTransform:
   m_Father: {fileID: 1514667637}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 749.83, y: -446.14}
-  m_SizeDelta: {x: 420.3436, y: 187.715}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: -210.16992, y: 93.85986}
+  m_SizeDelta: {x: 420.34363, y: 187.715}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1065433388
 MonoBehaviour:
@@ -6659,8 +6691,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4284045657
-  m_fontColor: {r: 0.3490566, g: 0.3490566, b: 0.3490566, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -6784,6 +6816,7 @@ MonoBehaviour:
   description: {fileID: 1008293606}
   shipImage: {fileID: 1934384911}
   buyButtonText: {fileID: 1961201121}
+  coinUpdaterInstance: {fileID: 0}
   shopShipsScript: {fileID: 0}
 --- !u!1 &1098500334
 GameObject:
@@ -8236,7 +8269,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 120, y: -63.360474}
+  m_AnchoredPosition: {x: 120, y: -63.36035}
   m_SizeDelta: {x: 153, y: 126.7479}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1436230100
@@ -8547,6 +8580,7 @@ MonoBehaviour:
   description: {fileID: 1761037789}
   shipImage: {fileID: 1773135965}
   buyButtonText: {fileID: 779246865}
+  coinUpdaterInstance: {fileID: 0}
   shopShipsScript: {fileID: 0}
 --- !u!1 &1501513517
 GameObject:
@@ -8605,6 +8639,7 @@ MonoBehaviour:
   description: {fileID: 578891968}
   shipImage: {fileID: 900457323}
   buyButtonText: {fileID: 218149598}
+  coinUpdaterInstance: {fileID: 0}
   shopShipsScript: {fileID: 0}
 --- !u!1 &1503224133
 GameObject:
@@ -8779,10 +8814,10 @@ RectTransform:
   m_Father: {fileID: 218259178}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -0.0052643}
-  m_SizeDelta: {x: 1920, y: 1080}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: -0.0053710938}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1514667638
 MonoBehaviour:
@@ -8885,7 +8920,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -396.7, y: 97.4}
+  m_AnchoredPosition: {x: -396.69995, y: 97.3999}
   m_SizeDelta: {x: 71.4628, y: 71.4628}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1527626135
@@ -8983,6 +9018,7 @@ MonoBehaviour:
   description: {fileID: 358475795}
   shipImage: {fileID: 61321084}
   buyButtonText: {fileID: 2032411331}
+  coinUpdaterInstance: {fileID: 0}
   shopShipsScript: {fileID: 0}
 --- !u!1 &1559695185
 GameObject:
@@ -9290,6 +9326,7 @@ MonoBehaviour:
   description: {fileID: 529949703}
   shipImage: {fileID: 1786198945}
   buyButtonText: {fileID: 1648854696}
+  coinUpdaterInstance: {fileID: 0}
   shopShipsScript: {fileID: 0}
 --- !u!1 &1648854694
 GameObject:
@@ -11891,6 +11928,7 @@ MonoBehaviour:
   description: {fileID: 436584089}
   shipImage: {fileID: 1855740015}
   buyButtonText: {fileID: 1848757680}
+  coinUpdaterInstance: {fileID: 0}
   shopShipsScript: {fileID: 0}
 --- !u!1 &2032411329
 GameObject:
