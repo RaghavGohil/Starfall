@@ -28,12 +28,13 @@ internal sealed class SpeedBlock : MonoBehaviour
     Gradient speedSmoke;
     [SerializeField]
     float speedColorTweenTime;
-    public ParticleSystem speedLines;
     CinemachineVirtualCamera vCam;
     bool speedExec = false;
 
     PlayerMovement playerMovementScript;
-    public StatusText statusTextScript;
+
+    [HideInInspector] public ParticleSystem speedLines;
+    [HideInInspector] public StatusText statusTextScript;
 
     void Awake()
     {
@@ -61,7 +62,6 @@ internal sealed class SpeedBlock : MonoBehaviour
     {
         speedExec = true;
         StartCoroutine(statusTextScript.StartAnimation("EXTRA SPEED!"));
-        StartCoroutine(CineMachineCameraShaker.Instance.ShakeOnce(2f,0.2f));
         speedLines.Play();
         playerMovementScript.BoostSpeed();
         Gradient lightGradient = lightTrail.colorGradient;

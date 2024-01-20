@@ -4,6 +4,8 @@ using UnityEngine;
 internal sealed class StatController : MonoBehaviour
 {
     [SerializeField] TMP_Text coinText;
+    [SerializeField] TMP_Text healthText;
+    [SerializeField] TMP_Text scoreText;
 
     public static StatController instance { get; private set; }
 
@@ -17,16 +19,20 @@ internal sealed class StatController : MonoBehaviour
 
     private void Start()
     {
-        UpdateText();
-    }
-
-    internal void UpdateText() 
-    {
         SetCoinText();
     }
 
-    internal void SetCoinText()
+    public void SetCoinText()
     {
         coinText.text = "COINS: " + CoinManager.GetAmount().ToString();
+    }
+    public void SetHealthText(int hp)
+    {
+        healthText.text = "HP: " + hp.ToString();
+    }
+
+    public void SetScoreText(int score)
+    {
+        scoreText.text = "SCORE: " + score.ToString();
     }
 }

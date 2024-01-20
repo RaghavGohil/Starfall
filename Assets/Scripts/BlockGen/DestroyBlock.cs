@@ -1,7 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using EZCameraShake;
 
 internal sealed class DestroyBlock : MonoBehaviour
 {
@@ -14,8 +12,9 @@ internal sealed class DestroyBlock : MonoBehaviour
     IEnumerator StartParticleSystem() 
     {
         GetComponent<SpriteRenderer>().enabled = false;
-        GetComponent<ParticleSystem>().Play();
-        yield return new WaitForSeconds(GetComponent<ParticleSystem>().main.duration);
+        GetComponentInChildren<ParticleSystem>().Play();
+        StartCoroutine(CineMachineCameraShaker.Instance.ShakeOnce(2f, 0.2f));
+        yield return new WaitForSeconds(GetComponentInChildren<ParticleSystem>().main.duration);
         Destroy(gameObject);
     }
 }

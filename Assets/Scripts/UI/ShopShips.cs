@@ -11,6 +11,7 @@ internal sealed class ShopShips : MonoBehaviour
     GameObject levelSelector;
 
     [SerializeField] LoadShipData loadShipDataScript;
+    [SerializeField] CoinUpdater coinUpdaterInstance;
 
     [SerializeField] GameObject pagePrefab, pageParentLG;
     List<GameObject> pages = new List<GameObject>();
@@ -27,6 +28,7 @@ internal sealed class ShopShips : MonoBehaviour
             GameObject g = Instantiate(pagePrefab,pageParentLG.transform);
             g.GetComponent<ShopPage>().SetShipData(ship);
             g.GetComponent<ShopPage>().shopShipsScript = this;
+            g.GetComponent<ShopPage>().coinUpdaterInstance = coinUpdaterInstance;
             pages.Add(g);
         }
     }

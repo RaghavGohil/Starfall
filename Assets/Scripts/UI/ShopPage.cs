@@ -9,7 +9,7 @@ internal sealed class ShopPage : MonoBehaviour
     [SerializeField] TMP_Text description;
     [SerializeField] Image shipImage;
     [SerializeField] TMP_Text buyButtonText;
-    [SerializeField] CoinUpdater coinUpdaterInstance;
+    [HideInInspector] public CoinUpdater coinUpdaterInstance;
     [HideInInspector] public ShopShips shopShipsScript;
     public void SetShipData(ShipSO s)
     {

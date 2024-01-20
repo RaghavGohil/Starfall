@@ -17,7 +17,7 @@ internal sealed class Projectile
     }
 }
 
-internal sealed class Shoot : MonoBehaviour
+public class Shoot : MonoBehaviour
 {
     GameObject shooter;
 

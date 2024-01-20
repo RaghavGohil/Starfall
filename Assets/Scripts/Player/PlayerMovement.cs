@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 [RequireComponent(typeof(Rigidbody2D))]
 internal sealed class PlayerMovement : MonoBehaviour
 {
+    [HideInInspector]
     public Joystick joystick;
     [SerializeField]
     Transform ship;

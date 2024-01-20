@@ -41,4 +41,10 @@ public class PausePanel : MonoBehaviour
         Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
+
+    public void AllLevels()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("LevelSelection");
+    }
 }

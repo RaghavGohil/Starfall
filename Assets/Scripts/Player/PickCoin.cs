@@ -8,7 +8,7 @@ internal sealed class PickCoin : MonoBehaviour
         {
             CoinManager.AddAmount(100);
             if (StatController.instance != null)
-                StatController.instance.UpdateText();
+                StatController.instance.SetCoinText();
             Destroy(collision.gameObject);
         }
     }

@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.UI;
 
-internal sealed class Settings : MonoBehaviour,ISave
+internal sealed class Settings : MonoBehaviour
 {
 
     [SerializeField] Toggle musicToggle;
@@ -50,7 +50,7 @@ internal sealed class Settings : MonoBehaviour,ISave
         }
     }
 
-    public void LoadData() 
+    internal void LoadData() 
     {
         object o = SerializationManager.Load("settings");
         if(o != null)
@@ -63,7 +63,7 @@ internal sealed class Settings : MonoBehaviour,ISave
         }
     }
 
-    public void SaveData() 
+    internal void SaveData() 
     {
         bool[] toggle_settings = { graphicsToggle.isOn, musicToggle.isOn, soundToggle.isOn };
         SerializationManager.Save("settings",toggle_settings);
