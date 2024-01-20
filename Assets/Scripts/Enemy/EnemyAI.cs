@@ -1,9 +1,10 @@
 /* This script implements a basic context based steering behavior */
+using System.Linq;
 using UnityEngine;
 
 public class DetectionData 
 {
-    public RaycastHit2D rayCastHit;
+    public RaycastHit2D[] rayCastHit;
     public Vector2 detectionVector;
     public float weight;
     public Color debugDrawColor;
@@ -11,6 +12,9 @@ public class DetectionData
 
 public class EnemyAI : MonoBehaviour
 {
+
+    /*other references*/
+    public GameObject player;
 
     /* disable on invisible*/
 
@@ -29,26 +33,36 @@ public class EnemyAI : MonoBehaviour
 
     State enemyState;
 
-    DetectionData[] detectionData;
+    DetectionData[] detectionData; // used for object detection
+    const float detectionSphereRadius = 10f; // will look for player till 10 units
 
     const float rayCastDistance = 1f;
-    const float rayCastOffset = 0.4f;
-
     const float totalAngle = 180f;
 
-    [Header("Data for detection")]
+    Collider2D selfCollider;
+
+    [Header("Steer Data")]
+    [SerializeField] float speed;
     [SerializeField] float rotateAmount;
+    [Header("Data for detection")]
     [SerializeField] int captureAmount;
+    [SerializeField] float fleeWeight;
+    [SerializeField] float seekWeight;
 
     [SerializeField] LayerMask hitLayerMask;
 
+    Vector3 averagedVector;
+    RaycastHit2D[] hits; 
+
     void Start()
     {
-        boxCollider = GetComponent<BoxCollider2D>(); 
+
+        boxCollider = GetComponent<BoxCollider2D>();
         trails.SetActive(false);
 
         visibleToCamera = false;
         enemyState = State.MoveRandom;
+        selfCollider = GetComponent<Collider2D>();
         captureAmount = 5;
         SetDetectionData();
     }
@@ -83,39 +97,63 @@ public class EnemyAI : MonoBehaviour
     {
         for(int i = 0;i < detectionData.Length; i++)
         {
-            detectionData[i].rayCastHit = Physics2D.Raycast(transform.position, detectionData[i].detectionVector,rayCastDistance,hitLayerMask);
+            detectionData[i].rayCastHit = Physics2D.RaycastAll(transform.position, detectionData[i].detectionVector,rayCastDistance,hitLayerMask);
         }
+    }
+
+    internal Vector2 GetAverageVector() 
+    {
+        Vector2 sum = Vector2.zero;
+
+        for (int i=0;i<detectionData.Length;i++)
+        {
+            sum += detectionData[i].detectionVector;
+        }
+
+        Vector2 average = sum / detectionData.Length;
+
+        return average;
+    }
+
+    internal void Steer()
+    {
+        for(int i=0;i<detectionData.Length;i++) 
+        {
+            if (detectionData[i].rayCastHit != null)
+                hits = FilterOutSelfColliders(detectionData[i].rayCastHit);
+            if (hits != null && hits.Length > 0) // means we have hit an obstacle
+            {
+                detectionData[i].weight = fleeWeight;
+                detectionData[i].debugDrawColor = Color.red;
+            }
+            else
+            { 
+                detectionData[i].weight = seekWeight;
+                detectionData[i].debugDrawColor = Color.green;
+            }
+        }
+
+        averagedVector = GetAverageVector();
+        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.FromToRotation(Vector3.up, averagedVector), Time.fixedDeltaTime * rotateAmount);
+        transform.position += transform.up * speed * Time.fixedDeltaTime;
     }
 
     private void OnDrawGizmos()
     {
+        //detection vectors
         for(int i = 0;i < detectionData.Length;i++)
         {
             if (detectionData[i] != null)
-                Debug.DrawRay(((Vector2)transform.position) + ((Vector2)transform.up) * rayCastOffset, detectionData[i].detectionVector, detectionData[i].debugDrawColor);
+                Debug.DrawRay(transform.position, detectionData[i].detectionVector, detectionData[i].debugDrawColor);
             else
                 Debug.Log("Detection vectors are null.");
         }
-    }
-
-    private void Steer()
-    {
-        transform.position += transform.up * 0.5f * Time.deltaTime;
-        if (visibleToCamera) 
-        {
-            /*if (rayCastHit.collider!= null) 
-            {
-                *//*foreach (string tag in colliderTags)
-                {
-                    if (tag == rayCastHit.collider.tag)
-                    {
-                        transform.Rotate(new Vector3(0f, 0f, rotateAmount*Time.fixedDeltaTime));
-                        break;
-                    }
-                }*//*
-            }*/
-        }
-        
+        //detection sphere
+        Gizmos.DrawWireSphere(transform.position,detectionSphereRadius);
+        //averaged vector
+        Debug.DrawRay(transform.position,averagedVector,Color.yellow);
+        //unit vector from enemy to player
+        //Debug.DrawRay(transform.position,player.transform.position,Color.yellow);
     }
 
     void OnBecameInvisible()
@@ -130,5 +168,15 @@ public class EnemyAI : MonoBehaviour
         visibleToCamera = true;
         boxCollider.enabled = true;
         trails.SetActive(true);
+    }
+    RaycastHit2D[] FilterOutSelfColliders(RaycastHit2D[] hits)
+    {
+        
+        if (selfCollider != null)
+        {
+            hits = hits.Where(hit => hit.collider != selfCollider).ToArray();
+        }
+
+        return hits;
     }
 }

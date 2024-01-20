@@ -8770,7 +8770,7 @@ GameObject:
   m_TagString: worldBoundary
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1101531071
 Transform:
@@ -9151,7 +9151,7 @@ GameObject:
   m_TagString: worldBoundary
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1183753503
 Transform:
@@ -9665,7 +9665,7 @@ GameObject:
   m_TagString: worldBoundary
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1383157842
 Transform:
@@ -10035,7 +10035,7 @@ GameObject:
   m_TagString: worldBoundary
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1522097304
 Transform:

@@ -49,7 +49,6 @@ public class WaveSystem : MonoBehaviour
                     : Random.Range(-range, range);
                 position = new Vector2(x, y);
                 GameObject g = Instantiate(enemy.prefab, position, new Quaternion(transform.rotation.x, transform.rotation.y, Random.Range(0f, 1f), transform.rotation.w), transform); // or should we get powers by dashing through the enemies?
-
             }
         }
     }
