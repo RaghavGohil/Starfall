@@ -392,14 +392,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   trails: {fileID: 1162369289621838044}
-  speed: 3
+  speed: 1
   rotateAmount: 10
-  captureAmount: 5
+  totalAngle: 180
+  rayCastDistance: 1.5
+  captureAmount: 7
   fleeWeight: 0.3
   seekWeight: 1
+  targetWeight: 0.5
+  newRandomTime: 10
   hitLayerMask:
     serializedVersion: 2
     m_Bits: 384
+  detectionSphereRadius: 10
+  contactFilter:
+    useTriggers: 1
+    useLayerMask: 1
+    useDepth: 1
+    useOutsideDepth: 0
+    useNormalAngle: 0
+    useOutsideNormalAngle: 0
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 512
+    minDepth: 0
+    maxDepth: 0
+    minNormalAngle: 0
+    maxNormalAngle: 0
+  maxCollidersInView: 5
 --- !u!61 &-478036036913570185
 BoxCollider2D:
   m_ObjectHideFlags: 0

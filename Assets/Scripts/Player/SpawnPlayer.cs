@@ -30,7 +30,7 @@ public class SpawnPlayer : MonoBehaviour
     GameObject[] playerPrefabs;
 
     [HideInInspector]
-    public GameObject player;
+    public static GameObject player;
 
     private void Start()
     {
