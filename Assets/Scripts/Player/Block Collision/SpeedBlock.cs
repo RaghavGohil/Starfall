@@ -54,8 +54,6 @@ internal sealed class SpeedBlock : MonoBehaviour
                 StartCoroutine(speedBlock());
             collider.transform.GetComponent<DestroyBlock>().DestroyIt();
         }
-        else if(collider.transform.tag == "speedBlock" && !playerMovementScript.is_dashing)
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     IEnumerator speedBlock()

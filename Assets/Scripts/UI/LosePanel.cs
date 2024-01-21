@@ -6,12 +6,15 @@ public class LosePanel : MonoBehaviour
 
     [SerializeField]
     float tweenTime;
-    CanvasGroup canvasGroup;
+    CanvasGroup losePanelCG;
+    [SerializeField]
+    CanvasGroup gameControlCG;
 
     private void Start()
     {
-        canvasGroup = GetComponent<CanvasGroup>();
-        LeanTween.value(gameObject, (value) => { canvasGroup.alpha = value; },canvasGroup.alpha,1f,tweenTime);
+        gameControlCG.interactable = false;
+        losePanelCG = GetComponent<CanvasGroup>();
+        LeanTween.value(gameObject, (value) => { losePanelCG.alpha = value; },losePanelCG.alpha,1f,tweenTime);
     }
 
     public void ReplayLevel()

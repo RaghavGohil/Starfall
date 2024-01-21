@@ -1,6 +1,5 @@
 /* This script implements a basic context based steering behavior */
 using System.Linq;
-using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
 
 public class DetectionData 
@@ -48,6 +47,7 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] float fleeWeight;
     [SerializeField] float seekWeight;
     [SerializeField] float targetWeight;
+    [SerializeField] float randomVectorWeight;
     [Header("Timing")]
     [SerializeField] float newRandomTime; // new random value must come after this time
     float randomTimeElapsed;
@@ -58,10 +58,14 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] ContactFilter2D contactFilter;
     [SerializeField] int maxCollidersInView;
 
+    [Header("Shooting")]
+    [SerializeField] Shoot[] shooters;
+
     Collider2D selfCollider;
     Vector3 averagedVector;
     Vector2 targetVector;
     Vector2 targetPosition;
+    Vector2 randomVector;
     RaycastHit2D[] hits;
     Collider2D[] resultColliders;
 
@@ -79,6 +83,7 @@ public class EnemyAI : MonoBehaviour
         SetDetectionData();
 
         resultColliders = new Collider2D[maxCollidersInView];
+        randomVector = GetRandomPosition().normalized * randomVectorWeight;
 
         randomTimeElapsed = 0f;
     }
@@ -87,8 +92,14 @@ public class EnemyAI : MonoBehaviour
     void FixedUpdate()
     {
         Steer();
+        Shoot();
         SetDetectionVectors();
         SetDetectionRayCasts();
+    }
+
+    private void LateUpdate()
+    {
+        DrawDebug();
     }
 
     internal void SetDetectionData() 
@@ -126,7 +137,7 @@ public class EnemyAI : MonoBehaviour
             sum += detectionData[i].detectionVector;
         }
 
-        sum += targetVector;
+        sum += targetVector+randomVector;
 
         Vector2 average = sum /( detectionData.Length + 1); // +1 is for target vec
 
@@ -193,9 +204,9 @@ public class EnemyAI : MonoBehaviour
     {
         int objectsDetected = Physics2D.OverlapCircle(transform.position, detectionSphereRadius, contactFilter, resultColliders);
         bool foundPlayer = false;
-        if (objectsDetected > 0) 
+        if (objectsDetected > 0 && player.GetComponent<Health>().GetHP() > 0)
         {
-            foreach (Collider2D col in resultColliders) 
+            foreach (Collider2D col in resultColliders)
             {
                 if (col.transform == player.transform)
                 {
@@ -208,10 +219,33 @@ public class EnemyAI : MonoBehaviour
         if (!foundPlayer) 
         {
             enemyState = State.MoveRandom;
+            
         }
     }
 
-    private void OnDrawGizmos()
+    internal void Shoot() 
+    {
+        if (shooters == null || shooters.Length == 0)
+            return;
+
+        if (enemyState == State.FollowPlayer)
+        {
+            for (int i = 0; i < shooters.Length; i++)
+            {
+                shooters[i].FireDown();
+            }
+        }
+        else 
+        {
+            for (int i = 0; i < shooters.Length; i++)
+            {
+                shooters[i].FireUp();
+            }
+        }
+        
+    }
+
+    private void DrawDebug()
     {
         //detection vectors
         for(int i = 0;i < detectionData.Length;i++)
@@ -222,11 +256,13 @@ public class EnemyAI : MonoBehaviour
                 Debug.Log("Detection vectors are null.");
         }
         //detection sphere
-        Gizmos.DrawWireSphere(transform.position,detectionSphereRadius);
+        //Gizmos.DrawWireSphere(transform.position,detectionSphereRadius);
         //averaged vector
         Debug.DrawRay(transform.position,averagedVector,Color.yellow);
         //from enemy to target 
         Debug.DrawRay(transform.position,targetVector,Color.white);
+        //from enemy to target 
+        Debug.DrawRay(transform.position,randomVector,Color.magenta);
     }
 
     void OnBecameInvisible()

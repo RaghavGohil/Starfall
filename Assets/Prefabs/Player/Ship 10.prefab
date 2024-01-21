@@ -310,6 +310,7 @@ GameObject:
   - component: {fileID: 1044789555700351427}
   - component: {fileID: 5491624197614010234}
   - component: {fileID: 2177724707440687825}
+  - component: {fileID: 8987023063157415751}
   m_Layer: 9
   m_Name: Ship 10
   m_TagString: Untagged
@@ -549,6 +550,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 100
+  deathParticles:
+  - {fileID: 3245005010396904635}
+  - {fileID: 5809818408661335611}
+  disableObjects:
+  - {fileID: 1044789555718227720}
+  canSetHealthText: 1
+--- !u!114 &8987023063157415751
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1044789555700351450}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fff8e7b51d16fa944a4fa88fb0314160, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  loseScreen: {fileID: 0}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 384
 --- !u!1 &1044789555718227720
 GameObject:
   m_ObjectHideFlags: 0

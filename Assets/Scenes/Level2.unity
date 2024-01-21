@@ -641,7 +641,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.5518868, g: 0.8447876, b: 1, a: 0.2627451}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.3882353}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3151,8 +3151,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f1c616b875d47443a81634a44a118c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tweenTime: 0.2
-  gameControlCG: {fileID: 1430018162}
+  tweenTime: 1
 --- !u!225 &706911137
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -3917,7 +3916,7 @@ SpriteRenderer:
   m_SortingLayerID: -1321778711
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: bd4c572c436c19841acd2f5b042335c0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7efe70ed8aee1a04bb82feb7cdb189ac, type: 3}
   m_Color: {r: 0.8867924, g: 0.8867924, b: 0.8867924, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -11187,7 +11186,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bb2f0294cd4ec94e907fad495d56777, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tweenTime: 0.2
+  tweenTime: 1
   levelToLoad: 2
 --- !u!225 &1879494130
 CanvasGroup:
@@ -11351,8 +11350,6 @@ MonoBehaviour:
   speedLines: {fileID: 1068325469}
   dashButton: {fileID: 345283809}
   shootEventInstance: {fileID: 1113487058}
-  loseScreen: {fileID: 706911132}
-  winScreen: {fileID: 1879494125}
   playerPrefabs:
   - {fileID: 1044789555700351450, guid: 672ace092da621f44b7808827bf77bba, type: 3}
   - {fileID: 1044789555700351450, guid: 7f5cd6a14565bc5448517def91b7e760, type: 3}

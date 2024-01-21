@@ -24,6 +24,10 @@ public class SpawnPlayer : MonoBehaviour
     Button dashButton;
     [SerializeField]
     ShootEvent shootEventInstance;
+    [SerializeField]
+    GameObject loseScreen;
+    [SerializeField]
+    GameObject winScreen;
 
     [Header("Player Prefabs")]
     [SerializeField]
@@ -39,6 +43,7 @@ public class SpawnPlayer : MonoBehaviour
         player.GetComponent<PlayerMovement>().joystick = joystick;
         player.GetComponent<SpeedBlock>().speedLines = speedLines;
         player.GetComponent<SpeedBlock>().statusTextScript = statusTextScript;
+        player.GetComponent<DiePlayer>().loseScreen = loseScreen;
         shootEventInstance.SetShootInstances(player.GetComponentsInChildren<Shoot>());
         dashButton.onClick.AddListener(player.GetComponent<PlayerMovement>().Dash);
     }
