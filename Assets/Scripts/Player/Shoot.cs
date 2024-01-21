@@ -9,7 +9,6 @@ internal sealed class Projectile
 {
     public Vector2 dir;
     public GameObject obj;
-    public float time;
     public Projectile(Vector2 dir,GameObject obj) 
     {
         this.dir = dir;
@@ -17,27 +16,21 @@ internal sealed class Projectile
     }
 }
 
-public class Shoot : MonoBehaviour
+internal sealed class Shoot : MonoBehaviour
 {
     GameObject shooter;
 
-    [SerializeField]
-    List<Projectile> activeProjectiles;
-    List<Projectile> removeList;
+    [SerializeField] List<Projectile> activeProjectiles;
+    [HideInInspector]public List<Projectile> removeList;
 
-    [SerializeField]
-    int fireRate; // how many projectiles in one second
-    [SerializeField]
-    float speed;
+    [SerializeField] int fireRate; // how many projectiles in one second
     float timeCount;
-    float timeout;
 
     bool hasPressedFire;
 
     void Start()
     {
         timeCount = 1f;
-        timeout = 5f;
         hasPressedFire = false;
         activeProjectiles = new List<Projectile>();
         removeList = new List<Projectile>();
@@ -59,14 +52,15 @@ public class Shoot : MonoBehaviour
     {
         if (hasPressedFire)
         {
+            Debug.DrawRay(shooter.transform.position,shooter.transform.up,Color.blue);
             timeCount += Time.fixedDeltaTime * fireRate;
             if (timeCount > 1f)
             {
                 GameObject _shooter = ProjectilePool.GetProjectile(shooter.transform.position, transform.rotation);
-                Debug.DrawRay(shooter.transform.position,shooter.transform.up,Color.blue);
                 if (_shooter != null) 
                 {
-                    activeProjectiles.Add(new Projectile(shooter.transform.up,_shooter));
+                    Projectile p = new Projectile(shooter.transform.up, _shooter);
+                    activeProjectiles.Add(p);
                 }
                 timeCount = 0f;
             }
@@ -75,21 +69,20 @@ public class Shoot : MonoBehaviour
 
     void Update() 
     {
-        TranslateProjectile();
+        ReplaceProjectiles();
     }
 
-    public void TranslateProjectile() 
+    public void ReplaceProjectiles() 
     {
         if (activeProjectiles.Count != 0) 
         {
             foreach (Projectile projectile in activeProjectiles) 
             {
-                projectile.obj.transform.position += (Vector3)projectile.dir*Time.deltaTime*speed;
-                projectile.time += Time.deltaTime;
-                if (projectile.time > timeout) 
+                if (projectile.obj.GetComponent<Bullet>().isDone) 
                 { 
                     ProjectilePool.ResetProjectile(projectile.obj);
                     removeList.Add(projectile);
+                    projectile.obj.GetComponent<Bullet>().isDone = false;
                 }
                 
             }

@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 318878335801539636}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.0423, y: 0.0418, z: 0}
+  m_LocalPosition: {x: -0.0423, y: 0.1083, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -45,8 +45,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activeProjectiles: []
+  removeList: []
   fireRate: 8
-  speed: 7.5
 --- !u!1 &1162369289285044189
 GameObject:
   m_ObjectHideFlags: 0
@@ -61,6 +61,7 @@ GameObject:
   - component: {fileID: -2709479811063904964}
   - component: {fileID: 2170088484068275706}
   - component: {fileID: 2920959899691582621}
+  - component: {fileID: 525699513708936981}
   m_Layer: 7
   m_Name: ship (7) 3
   m_TagString: Untagged
@@ -183,6 +184,7 @@ MonoBehaviour:
   shooters:
   - {fileID: 3936128208322367547}
   - {fileID: 5890179020375408944}
+  minimumAngleToShoot: 45
 --- !u!61 &-2709479811063904964
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -196,7 +198,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0022251606, y: -0.004450202}
+  m_Offset: {x: -0.0031943321, y: 0.06781025}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -207,7 +209,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.7091141, y: 0.58895755}
+  m_Size: {x: 0.82111776, y: 0.44443664}
   m_EdgeRadius: 0
 --- !u!114 &2170088484068275706
 MonoBehaviour:
@@ -243,6 +245,27 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 512
+--- !u!50 &525699513708936981
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1162369289285044189}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &1162369289621838044
 GameObject:
   m_ObjectHideFlags: 0
@@ -742,7 +765,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4020698157381241154}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.0423, y: 0.0418, z: 0}
+  m_LocalPosition: {x: 0.0423, y: 0.1083, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -762,8 +785,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activeProjectiles: []
+  removeList: []
   fireRate: 8
-  speed: 7.5
 --- !u!1 &4655566745358299761
 GameObject:
   m_ObjectHideFlags: 0

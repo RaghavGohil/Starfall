@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DieEnemy : MonoBehaviour
+public class DieEnemy : MonoBehaviour,IDie
 {
     [SerializeField] LayerMask layerMask;
     private void OnTriggerEnter2D(Collider2D collision)
@@ -12,6 +12,7 @@ public class DieEnemy : MonoBehaviour
             if (IsOnLayer(collision.gameObject,layerMask))
             {
                 DieInGame();
+                GetComponent<IDamage>().Damage(100);
             }
         }
     }
@@ -19,8 +20,8 @@ public class DieEnemy : MonoBehaviour
     public void DieInGame() 
     {
         Destroy(GetComponent<EnemyAI>());
+        GetComponent<BoxCollider2D>().enabled = false;
         GetComponent<SpriteRenderer>().enabled = false;
-        GetComponent<IDamage>().Damage(100);
     }
 
     bool IsOnLayer(GameObject obj, LayerMask layerMask)

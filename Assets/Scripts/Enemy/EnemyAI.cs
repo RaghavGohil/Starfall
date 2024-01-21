@@ -60,6 +60,7 @@ public class EnemyAI : MonoBehaviour
 
     [Header("Shooting")]
     [SerializeField] Shoot[] shooters;
+    [SerializeField] int minimumAngleToShoot;
 
     Collider2D selfCollider;
     Vector3 averagedVector;
@@ -228,7 +229,7 @@ public class EnemyAI : MonoBehaviour
         if (shooters == null || shooters.Length == 0)
             return;
 
-        if (enemyState == State.FollowPlayer)
+        if (enemyState == State.FollowPlayer && Vector2.Angle(transform.up,targetVector) < minimumAngleToShoot)
         {
             for (int i = 0; i < shooters.Length; i++)
             {

@@ -47,6 +47,7 @@ GameObject:
   - component: {fileID: 1803298828984993058}
   - component: {fileID: -2856785727779885740}
   - component: {fileID: 7851190022821116623}
+  - component: {fileID: -4415688910561577251}
   m_Layer: 7
   m_Name: ship (7) 4
   m_TagString: Untagged
@@ -169,6 +170,7 @@ MonoBehaviour:
   shooters:
   - {fileID: 5545520760402012662}
   - {fileID: 7699482821105842968}
+  minimumAngleToShoot: 45
 --- !u!61 &1803298828984993058
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -182,7 +184,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.0022252798, y: 0.006675333}
+  m_Offset: {x: 0.00066545606, y: -0.048249364}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -193,7 +195,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.80701923, y: 0.709114}
+  m_Size: {x: 0.708733, y: 0.46050763}
   m_EdgeRadius: 0
 --- !u!114 &-2856785727779885740
 MonoBehaviour:
@@ -229,6 +231,27 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 512
+--- !u!50 &-4415688910561577251
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1162369289285044189}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &1162369289621838044
 GameObject:
   m_ObjectHideFlags: 0
@@ -436,7 +459,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2336651495974747752}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.0535, y: 0.0061, z: 0}
+  m_LocalPosition: {x: 0.0535, y: 0.0785, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -456,8 +479,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activeProjectiles: []
+  removeList: []
   fireRate: 8
-  speed: 7.5
 --- !u!1 &2706215309900498590
 GameObject:
   m_ObjectHideFlags: 0
@@ -483,7 +506,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2706215309900498590}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.0535, y: 0.0061, z: 0}
+  m_LocalPosition: {x: -0.0535, y: 0.0785, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -503,8 +526,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activeProjectiles: []
+  removeList: []
   fireRate: 8
-  speed: 7.5
 --- !u!1 &3469909924687175191
 GameObject:
   m_ObjectHideFlags: 0

@@ -303,6 +303,7 @@ GameObject:
   - component: {fileID: -478036036913570185}
   - component: {fileID: -3516274351550326908}
   - component: {fileID: -6159276174720641519}
+  - component: {fileID: -2228465226529050797}
   m_Layer: 7
   m_Name: ship (7) 1
   m_TagString: Untagged
@@ -424,6 +425,7 @@ MonoBehaviour:
   maxCollidersInView: 5
   shooters:
   - {fileID: 8924868739262561624}
+  minimumAngleToShoot: 45
 --- !u!61 &-478036036913570185
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -437,7 +439,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.017651916, y: -0.02941972}
+  m_Offset: {x: 0.0028872937, y: 0.022374779}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -448,7 +450,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.75061095, y: 0.5466342}
+  m_Size: {x: 0.5309309, y: 0.40375286}
   m_EdgeRadius: 0
 --- !u!114 &-3516274351550326908
 MonoBehaviour:
@@ -484,6 +486,27 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 512
+--- !u!50 &-2228465226529050797
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1162369289285044189}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &1162369289621838044
 GameObject:
   m_ObjectHideFlags: 0
@@ -10350,7 +10373,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5723156600231000009}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.0531, z: 0}
+  m_LocalPosition: {x: 0, y: 0.103, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -10370,8 +10393,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activeProjectiles: []
+  removeList: []
   fireRate: 8
-  speed: 7.5
 --- !u!1 &6816691185642905001
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,7 +1,7 @@
 /* if anything is colliding to the object, it dies */
 using UnityEngine;
 
-internal sealed class DiePlayer : MonoBehaviour
+internal sealed class DiePlayer : MonoBehaviour,IDie
 {
     [HideInInspector] public GameObject loseScreen;
     [SerializeField] LayerMask layerMask;
@@ -11,6 +11,7 @@ internal sealed class DiePlayer : MonoBehaviour
         {
             if (IsOnLayer(collision.gameObject,layerMask) && GetComponent<PlayerMovement>().is_dashing == false)
             {
+                GetComponent<IDamage>().Damage(100);
                 DieInGame();
             }
         }
@@ -19,10 +20,10 @@ internal sealed class DiePlayer : MonoBehaviour
     public void DieInGame() 
     {
         GetComponent<PlayerMovement>().enabled = false;
+        GetComponent<BoxCollider2D>().enabled = false;
         GetComponent<Rigidbody2D>().velocity = Vector3.zero;
         GetComponent<Rigidbody2D>().angularVelocity = 0f;
         loseScreen.SetActive(true);
-        GetComponent<IDamage>().Damage(100);
         StartCoroutine(CineMachineCameraShaker.Instance.ShakeOnce(2f, 0.2f));
     }
 

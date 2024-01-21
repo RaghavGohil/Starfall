@@ -1,5 +1,3 @@
-using System.Xml.Serialization;
-using TMPro;
 using UnityEngine;
 
 public class Health : MonoBehaviour,IDamage
@@ -20,7 +18,7 @@ public class Health : MonoBehaviour,IDamage
 
     internal void SetText()
     {
-        if(canSetHealthText)
+        if(canSetHealthText && hp>=0)
             StatController.instance.SetHealthText(hp);
     }
 
@@ -42,10 +40,11 @@ public class Health : MonoBehaviour,IDamage
         
         SetText();
 
-        if (hp == 0) 
+        if (hp <= 0) 
         {
             PlayDeathParticlesOnDeath();
             DisableGameObjectsOnDeath();
+            GetComponent<IDie>().DieInGame();
         }
     }
     

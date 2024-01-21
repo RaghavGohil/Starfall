@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1821337176662700484}
   - component: {fileID: 1821337176662700487}
   - component: {fileID: 3699725702780958116}
+  - component: {fileID: 2062600998443566905}
   m_Layer: 0
   m_Name: Projectile
   m_TagString: Untagged
@@ -72,7 +73,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 443200073
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: -1
   m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
   m_Color: {r: 0.8018868, g: 0.73557425, b: 0.38959596, a: 1}
@@ -111,3 +112,22 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &2062600998443566905
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1821337176662700485}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7f1a9c9c62dd0647ac93c14bee7a448, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletSpeed: 10
+  time: 5
+  damageAmount: 5
+  isDone: 0
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 896
