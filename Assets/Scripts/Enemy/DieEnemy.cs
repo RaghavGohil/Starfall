@@ -11,7 +11,6 @@ public class DieEnemy : MonoBehaviour,IDie
         {
             if (IsOnLayer(collision.gameObject,layerMask))
             {
-                DieInGame();
                 GetComponent<IDamage>().Damage(100);
             }
         }

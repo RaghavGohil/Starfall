@@ -1,4 +1,3 @@
-using Unity.Android.Types;
 using UnityEngine;
 
 public class Health : MonoBehaviour,IDamage
@@ -44,8 +43,7 @@ public class Health : MonoBehaviour,IDamage
         spriteRenderer.color = Color.white;
         if (colorTween != null)
             colorTween.reset();
-        colorTween = LeanTween.value(gameObject, (value) => { spriteRenderer.color = value; },spriteRenderer.color,Color.red,colorTweenTime).setLoopPingPong(1)
-            .setOnComplete(() => { spriteRenderer.color = Color.white; });
+        colorTween = LeanTween.value(gameObject, (value) => { spriteRenderer.color = value; }, spriteRenderer.color, Color.red, colorTweenTime).setLoopPingPong(1);
         SetText();
 
         if (hp <= 0) 

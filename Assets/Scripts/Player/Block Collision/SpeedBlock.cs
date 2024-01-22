@@ -54,7 +54,9 @@ internal sealed class SpeedBlock : MonoBehaviour
             {
                 if (!speedExec)
                     StartCoroutine(speedBlock());
-                collider.transform.GetComponent<DestroyBlock>().DieInGame();
+                IDamage id = collider.GetComponent<IDamage>();
+                if (id != null)
+                    id.Damage(100);
             }
         }
         

@@ -37,7 +37,6 @@ internal sealed class Boom : MonoBehaviour,IDie
     {
         GetComponent<SpriteRenderer>().enabled = false;
         GetComponent<BoxCollider2D>().enabled = false;
-        StartCoroutine(CineMachineCameraShaker.Instance.ShakeOnce(2f, 0.2f));
         GetComponentInChildren<ParticleSystem>().Play();
         yield return new WaitForSeconds(GetComponentInChildren<ParticleSystem>().main.duration);
         Destroy(gameObject);

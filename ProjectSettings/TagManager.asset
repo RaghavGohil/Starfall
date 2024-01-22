@@ -13,6 +13,7 @@ TagManager:
   - coin
   - firePowerBlock
   - fuelBlock
+  - enemy
   layers:
   - Default
   - TransparentFX

@@ -9,10 +9,11 @@ internal sealed class DiePlayer : MonoBehaviour,IDie
     {
         if (collision != null)
         {
-            if (IsOnLayer(collision.gameObject,layerMask) && GetComponent<PlayerMovement>().is_dashing == false && GetComponent<SpeedBlock>().speedExec == false)
+            if (IsOnLayer(collision.gameObject,layerMask) && (GetComponent<PlayerMovement>().is_dashing == false && GetComponent<SpeedBlock>().speedExec == false))
             {
-                GetComponent<IDamage>().Damage(100);
-                DieInGame();
+                IDamage id = GetComponent<IDamage>();
+                if (id != null) 
+                    id.Damage(100);
             }
         }
     }
