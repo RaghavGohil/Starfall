@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2804534454862502287
+--- !u!1 &3228682341355999183
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,9 +8,9 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6628320344345452280}
-  - component: {fileID: 7281681099402065774}
-  - component: {fileID: 9114041023398545004}
+  - component: {fileID: 7745408689569575958}
+  - component: {fileID: 6213153156984031071}
+  - component: {fileID: 3143378644308603736}
   m_Layer: 8
   m_Name: Particle System
   m_TagString: Untagged
@@ -18,13 +18,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6628320344345452280
+--- !u!4 &7745408689569575958
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2804534454862502287}
+  m_GameObject: {fileID: 3228682341355999183}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -33,13 +33,13 @@ Transform:
   m_Father: {fileID: 247974808971009026}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
---- !u!198 &7281681099402065774
+--- !u!198 &6213153156984031071
 ParticleSystem:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2804534454862502287}
+  m_GameObject: {fileID: 3228682341355999183}
   serializedVersion: 8
   lengthInSec: 1
   simulationSpeed: 3.68
@@ -169,7 +169,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 3.25
+      scalar: 2.92
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -285,8 +285,8 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.2
-      minScalar: 0.5
+      scalar: 0.11
+      minScalar: 0.26
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -1314,7 +1314,7 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 0.15686274, g: 0.5985608, b: 0.6313726, a: 1}
+        key0: {r: 0.22761661, g: 0.86501306, b: 0.8773585, a: 1}
         key1: {r: 0.26415092, g: 0.23798503, b: 0.23798503, a: 1}
         key2: {r: 0, g: 0, b: 0, a: 0}
         key3: {r: 0, g: 0, b: 0, a: 0}
@@ -4749,14 +4749,14 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
---- !u!199 &9114041023398545004
+--- !u!199 &3143378644308603736
 ParticleSystemRenderer:
   serializedVersion: 6
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2804534454862502287}
+  m_GameObject: {fileID: 3228682341355999183}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -4834,6 +4834,7 @@ GameObject:
   - component: {fileID: 3837167672089708364}
   - component: {fileID: 6714411965745217356}
   - component: {fileID: 714427426644904724}
+  - component: {fileID: -6129557082497248398}
   m_Layer: 8
   m_Name: Shield
   m_TagString: sheildBlock
@@ -4853,7 +4854,7 @@ Transform:
   m_LocalScale: {x: 0.49, y: 0.49, z: 0.49}
   m_ConstrainProportionsScale: 1
   m_Children:
-  - {fileID: 6628320344345452280}
+  - {fileID: 7745408689569575958}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4968,3 +4969,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ddeed40bab1c0440ac34f5e42a70ace, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-6129557082497248398
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6638238300873455201}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ece72a61ae963d41b34650be42399ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hp: 20
+  deathParticles:
+  - {fileID: 6213153156984031071}
+  disableObjects: []
+  spriteRenderer: {fileID: 4890656233317083274}
+  colorTweenTime: 0.1
+  canSetHealthText: 0

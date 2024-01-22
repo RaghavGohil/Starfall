@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 internal sealed class ShootEvent : MonoBehaviour,IPointerDownHandler,IPointerUpHandler
 {
 
-    Shoot[] shootInstances;
+    public Shoot[] shootInstances;
 
     public void SetShootInstances(Shoot[] instances) 
     {

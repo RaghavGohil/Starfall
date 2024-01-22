@@ -22,6 +22,8 @@ public class DieEnemy : MonoBehaviour,IDie
         Destroy(GetComponent<EnemyAI>());
         GetComponent<BoxCollider2D>().enabled = false;
         GetComponent<SpriteRenderer>().enabled = false;
+        GetComponent<Drop>().DropStuff();
+        StartCoroutine(CineMachineCameraShaker.Instance.ShakeOnce(2f, 0.2f));
     }
 
     bool IsOnLayer(GameObject obj, LayerMask layerMask)

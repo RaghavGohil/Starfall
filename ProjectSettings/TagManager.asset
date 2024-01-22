@@ -6,12 +6,13 @@ TagManager:
   tags:
   - boomBlock
   - debrisBlock
-  - fuelBlock
   - sheildBlock
   - speedBlock
   - vCam
   - worldBoundary
   - coin
+  - firePowerBlock
+  - fuelBlock
   layers:
   - Default
   - TransparentFX

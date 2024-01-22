@@ -48,6 +48,7 @@ GameObject:
   - component: {fileID: -2856785727779885740}
   - component: {fileID: 7851190022821116623}
   - component: {fileID: -4415688910561577251}
+  - component: {fileID: -1395955947990627168}
   m_Layer: 7
   m_Name: ship (7) 4
   m_TagString: Untagged
@@ -215,6 +216,8 @@ MonoBehaviour:
   - {fileID: 8461730945795750039}
   disableObjects:
   - {fileID: 7120372596069916679}
+  spriteRenderer: {fileID: 1162369289285044188}
+  colorTweenTime: 0.1
   canSetHealthText: 0
 --- !u!114 &7851190022821116623
 MonoBehaviour:
@@ -252,6 +255,23 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &-1395955947990627168
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1162369289285044189}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2025719e2caa4ba4381032cde103e3f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dropAbles:
+  - obj: {fileID: 5920216689030791919, guid: 4646adec1505d064380f7ff244b80b57, type: 3}
+    times: 4
+  tweenTime: 0.3
+  maxDistance: 2
 --- !u!1 &1162369289621838044
 GameObject:
   m_ObjectHideFlags: 0

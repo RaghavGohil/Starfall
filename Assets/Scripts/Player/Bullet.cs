@@ -7,6 +7,7 @@ internal sealed class Bullet : MonoBehaviour
     [SerializeField] int damageAmount;
     [HideInInspector] public bool isDone;
     [SerializeField] LayerMask layerMask;
+    [SerializeField] GameObject hitParticleGO;
     float timeElapsed;
     private void Start()
     {
@@ -27,9 +28,9 @@ internal sealed class Bullet : MonoBehaviour
     {
         if (collision != null) 
         {
-            print(collision.name);
             if (IsOnLayer(collision.gameObject, layerMask))
             { 
+                Instantiate(hitParticleGO,transform.position,Quaternion.identity).GetComponent<ParticleSystem>().Play();
                 IDamage damageInstance = collision.GetComponent<IDamage>();
                 if (damageInstance != null)
                 {

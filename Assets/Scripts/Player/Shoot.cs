@@ -23,7 +23,7 @@ internal sealed class Shoot : MonoBehaviour
     [SerializeField] List<Projectile> activeProjectiles;
     [HideInInspector]public List<Projectile> removeList;
 
-    [SerializeField] int fireRate; // how many projectiles in one second
+    public int fireRate; // how many projectiles in one second
     float timeCount;
 
     bool hasPressedFire;

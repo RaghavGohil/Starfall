@@ -29,7 +29,7 @@ internal sealed class SpeedBlock : MonoBehaviour
     [SerializeField]
     float speedColorTweenTime;
     CinemachineVirtualCamera vCam;
-    bool speedExec = false;
+    public bool speedExec { get; private set; } = false;
 
     PlayerMovement playerMovementScript;
 
@@ -48,12 +48,16 @@ internal sealed class SpeedBlock : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collider)
     {
-        if ((playerMovementScript.is_dashing || speedExec == true) && collider.transform.tag == "speedBlock")
+        if (collider != null) 
         {
-            if (!speedExec)
-                StartCoroutine(speedBlock());
-            collider.transform.GetComponent<DestroyBlock>().DestroyIt();
+            if ((playerMovementScript.is_dashing || speedExec == true) && collider.CompareTag("speedBlock"))
+            {
+                if (!speedExec)
+                    StartCoroutine(speedBlock());
+                collider.transform.GetComponent<DestroyBlock>().DieInGame();
+            }
         }
+        
     }
 
     IEnumerator speedBlock()

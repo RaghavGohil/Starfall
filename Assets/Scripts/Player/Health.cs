@@ -1,3 +1,4 @@
+using Unity.Android.Types;
 using UnityEngine;
 
 public class Health : MonoBehaviour,IDamage
@@ -7,6 +8,9 @@ public class Health : MonoBehaviour,IDamage
     int hp;
     [SerializeField] ParticleSystem[] deathParticles;
     [SerializeField] GameObject[] disableObjects;
+    [SerializeField] SpriteRenderer spriteRenderer;
+    [SerializeField] float colorTweenTime;
+    LTDescr colorTween;
 
     [SerializeField] bool canSetHealthText;
 
@@ -37,7 +41,11 @@ public class Health : MonoBehaviour,IDamage
     {
         hp -= amount;
         hp = Mathf.Clamp(hp, 0, 100);
-        
+        spriteRenderer.color = Color.white;
+        if (colorTween != null)
+            colorTween.reset();
+        colorTween = LeanTween.value(gameObject, (value) => { spriteRenderer.color = value; },spriteRenderer.color,Color.red,colorTweenTime).setLoopPingPong(1)
+            .setOnComplete(() => { spriteRenderer.color = Color.white; });
         SetText();
 
         if (hp <= 0) 

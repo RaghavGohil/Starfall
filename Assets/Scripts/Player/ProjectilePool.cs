@@ -17,7 +17,7 @@ internal sealed class ProjectilePool : MonoBehaviour
     void Start()
     {
         used = 0;
-        numProjectiles = 100;
+        numProjectiles = 200;
         projectilePool = new Stack<GameObject>();
         CreateProjectiles();
     }
