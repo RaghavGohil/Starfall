@@ -10,6 +10,7 @@ internal sealed class StatusText : MonoBehaviour
     int fontMin,fontMax;
     [SerializeField]
     float tweenTimeIn,tweenTimeOut,animationTime;
+    LTDescr tweenIn, tweenOut;
 
     private void Start()
     {
@@ -19,9 +20,13 @@ internal sealed class StatusText : MonoBehaviour
 
     public IEnumerator StartAnimation(string message) 
     {
+        if (tweenIn != null)
+            LeanTween.cancel(tweenIn.id); 
+        if (tweenOut != null)
+            LeanTween.cancel(tweenOut.id); 
         text.text = message;
-        LeanTween.value(gameObject, (float value) => { text.fontSize = (int)value; },fontMin,fontMax,tweenTimeIn);
+        tweenIn = LeanTween.value(gameObject, (float value) => { text.fontSize = (int)value; },fontMin,fontMax,tweenTimeIn);
         yield return new WaitForSeconds(animationTime);
-        LeanTween.value(gameObject, (float value) => { text.fontSize = (int)value; }, fontMax, fontMin, tweenTimeOut).setOnComplete(() => { text.text = ""; });
+        tweenOut = LeanTween.value(gameObject, (float value) => { text.fontSize = (int)value; }, fontMax, fontMin, tweenTimeOut).setOnComplete(() => { text.text = ""; });
     }
 }

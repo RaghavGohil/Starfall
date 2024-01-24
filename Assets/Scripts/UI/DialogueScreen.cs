@@ -1,7 +1,5 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Xml.Linq;
 using TMPro;
 using UnityEngine;
 
@@ -26,9 +24,9 @@ internal sealed class DialogueScreen : MonoBehaviour
     LeanTweenType tweenType;
     float tweenTime;
 
-    [SerializeField]
-    float moveOffset;
-
+    [SerializeField] float moveOffset;
+    public float messageTime; 
+    public string[] messages;
     Action dialogueComplete;
 
     void Start()
@@ -46,8 +44,7 @@ internal sealed class DialogueScreen : MonoBehaviour
 
         gameControlCanvasGroup = gameControlUI.GetComponent<CanvasGroup>();
         
-        string[] message = { "Captain Ashish: So we have to destroy the alien ships to retrieve the alpha keys?", "Commander Sameer: Yes. All 5 planets store a key. If we retrieve it, we can revive the world.", "Captain Ashish: Sounds great!" , "Captain Sameer: You can dash through the floating blocks to get abilities.", "Captain Ashish: Yeah. It's the left button."};
-        StartCoroutine(StartSequence(message,5f));
+        StartCoroutine(StartSequence(messages,messageTime));
     }
 
     public IEnumerator StartSequence(string[] message, float duration) 

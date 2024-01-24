@@ -10,12 +10,23 @@ public class Health : MonoBehaviour,IDamage
     [SerializeField] SpriteRenderer spriteRenderer;
     [SerializeField] float colorTweenTime;
     LTDescr colorTween;
+    Color originalColor;
 
     [SerializeField] bool canSetHealthText;
+
+    public enum State 
+    {
+        Alive,
+        Dead
+    };
+
+    public State aliveStatus { get; private set; }
 
     // Start is called before the first frame update
     void Start()
     {
+        aliveStatus = State.Alive;
+        originalColor = spriteRenderer.color;
         SetText();
     }
 
@@ -42,8 +53,8 @@ public class Health : MonoBehaviour,IDamage
         hp = Mathf.Clamp(hp, 0, 100);
         spriteRenderer.color = Color.white;
         if (colorTween != null)
-            colorTween.reset();
-        colorTween = LeanTween.value(gameObject, (value) => { spriteRenderer.color = value; }, spriteRenderer.color, Color.red, colorTweenTime).setLoopPingPong(1);
+            LeanTween.cancel(colorTween.id);
+        colorTween = LeanTween.value(gameObject, (value) => { spriteRenderer.color = value; }, originalColor, Color.red, colorTweenTime).setLoopPingPong(1);
         SetText();
 
         if (hp <= 0) 
@@ -51,6 +62,7 @@ public class Health : MonoBehaviour,IDamage
             PlayDeathParticlesOnDeath();
             DisableGameObjectsOnDeath();
             GetComponent<IDie>().DieInGame();
+            aliveStatus = State.Dead;
         }
     }
     

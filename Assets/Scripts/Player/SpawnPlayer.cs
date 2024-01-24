@@ -28,6 +28,7 @@ public class SpawnPlayer : MonoBehaviour
     GameObject loseScreen;
     [SerializeField]
     GameObject winScreen;
+    [SerializeField] GameManager gameManagerInstance;
 
     [Header("Player Prefabs")]
     [SerializeField]
@@ -47,5 +48,7 @@ public class SpawnPlayer : MonoBehaviour
         player.GetComponent<DiePlayer>().loseScreen = loseScreen;
         shootEventInstance.SetShootInstances(player.GetComponentsInChildren<Shoot>());
         dashButton.onClick.AddListener(player.GetComponent<PlayerMovement>().Dash);
+        gameManagerInstance.playerMovementInstance = player.GetComponent<PlayerMovement>();
+        gameManagerInstance.StartGame();
     }
 }

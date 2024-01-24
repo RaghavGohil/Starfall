@@ -6,15 +6,19 @@ public class WinPanel : MonoBehaviour
 
     [SerializeField]
     float tweenTime;
-    CanvasGroup canvasGroup;
+    CanvasGroup winPanelCG;
 
     [SerializeField]
     int levelToLoad;
+    [SerializeField]
+    CanvasGroup gameControlCG;
 
     private void Start()
     {
-        canvasGroup = GetComponent<CanvasGroup>();
-        LeanTween.value(gameObject, (value) => { canvasGroup.alpha = value; }, canvasGroup.alpha, 1f, tweenTime);
+        gameControlCG.interactable = false;
+        winPanelCG = GetComponent<CanvasGroup>();
+        LevelManager.UnlockLevel(levelToLoad - 1);
+        LeanTween.value(gameObject, (value) => { winPanelCG.alpha = value; }, winPanelCG.alpha, 1f, tweenTime);
     }
 
     public void NextLevel() 

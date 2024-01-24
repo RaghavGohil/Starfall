@@ -21,7 +21,7 @@ public class PausePanel : MonoBehaviour
     {
         gameControlCG.interactable = false;
         if (pauseTweenInstance != null)
-            pauseTweenInstance.reset();
+            LeanTween.cancel(pauseTweenInstance.id);
         pauseTweenInstance = LeanTween.value(gameObject, (value) => { pauseCG.alpha = value; }, pauseCG.alpha, 1f, tweenTime)
             .setOnComplete(()=>{Time.timeScale = 0f;}) ;
     }
@@ -31,7 +31,7 @@ public class PausePanel : MonoBehaviour
         gameControlCG.interactable = true;
         Time.timeScale = 1f;
         if (pauseTweenInstance != null)
-            pauseTweenInstance.reset();
+            LeanTween.cancel(pauseTweenInstance.id);
         pauseTweenInstance = LeanTween.value(gameObject, (value) => { pauseCG.alpha = value; }, pauseCG.alpha, 0f, tweenTime)
             .setOnComplete(() => { gameObject.SetActive(false); });
     }

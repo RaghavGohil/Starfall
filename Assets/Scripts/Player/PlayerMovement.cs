@@ -44,9 +44,6 @@ internal sealed class PlayerMovement : MonoBehaviour
         player_rb = GetComponent<Rigidbody2D>();
         speedBoost = false;
         smoke.Stop();
-
-        //wait on start
-        StartCoroutine(StartMovement());
     }
 
     void Move() 
@@ -107,9 +104,8 @@ internal sealed class PlayerMovement : MonoBehaviour
         }
     }
 
-    IEnumerator StartMovement() 
+    public void StartMovement() 
     {
-        yield return new WaitForSeconds(1f);
         smoke.Play();
         can_move = true;
         can_dash = true;

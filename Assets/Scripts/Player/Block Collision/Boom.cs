@@ -16,6 +16,7 @@ internal sealed class Boom : MonoBehaviour,IDie
     {
         blastParticle.Play();
         Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position,blastRadius);
+        StartCoroutine(CineMachineCameraShaker.Instance.ShakeOnce(2f, 0.2f));
         if (colliders != null && colliders.Length > 0)
         {
             foreach (Collider2D collider in colliders)

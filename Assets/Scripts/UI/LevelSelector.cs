@@ -11,11 +11,7 @@ internal sealed class LevelSelector : MonoBehaviour
 
     static int numPlanets;
 
-    static bool[] levelLocks;
-
     [SerializeField] Button[] buttons;
-
-    [SerializeField] TMP_Text coinText;
 
     [SerializeField] GameObject shopShipsMenu;
 
@@ -27,28 +23,13 @@ internal sealed class LevelSelector : MonoBehaviour
         SetButtons();
     }
 
-    public static void SetLevelLocks() 
-    {
-        numPlanets = 5;
-        LevelSelector.levelLocks = new bool[numPlanets];
-        for(int i=0;i < LevelSelector.levelLocks.Length;i++) 
-        {
-            LevelSelector.levelLocks[i] = (i==0)?true:false;
-        }
-    }
-
     void SetButtons()
     {
         for(int i=0;i<buttons.Length;i++) 
         {
-            buttons[i].interactable = LevelSelector.levelLocks[i];
-            buttons[i].GetComponentInChildren<TMP_Text>().text = LevelSelector.levelLocks[i]?"play":"locked";
+            buttons[i].interactable = LevelManager.levelsUnlocked[i];
+            buttons[i].GetComponentInChildren<TMP_Text>().text = LevelManager.levelsUnlocked[i]?"play":"locked";
         }
-    }
-
-    public void UnlockLevel(int i) 
-    {
-        levelLocks[i] = true;
     }
 
     public void PlayLevel(int i) 

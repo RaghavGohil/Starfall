@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-internal class DestroyBlock : MonoBehaviour,IDie
+internal sealed class DestroyBlock : MonoBehaviour,IDie
 {
 
     public void DieInGame()

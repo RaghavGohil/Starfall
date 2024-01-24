@@ -207,7 +207,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1044789555480676977}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.0539, y: 0.09650001, z: 0}
+  m_LocalPosition: {x: 0.0539, y: 0.121800005, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -254,7 +254,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1044789555554954967}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.0539, y: 0.0966, z: 0}
+  m_LocalPosition: {x: -0.0539, y: 0.1219, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -621,7 +621,7 @@ MonoBehaviour:
   shooters: {fileID: 1044789555019157655}
   maxFireRate: 13
   minFireRate: 8
-  time: 0
+  time: 5
   statusTextScript: {fileID: 0}
 --- !u!114 &-2748715053879334786
 MonoBehaviour:

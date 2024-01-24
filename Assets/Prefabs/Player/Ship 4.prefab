@@ -5433,7 +5433,7 @@ MonoBehaviour:
   shooters: {fileID: 1044789555019157655}
   maxFireRate: 13
   minFireRate: 8
-  time: 0
+  time: 5
   statusTextScript: {fileID: 0}
 --- !u!114 &-2032371470761356898
 MonoBehaviour:
