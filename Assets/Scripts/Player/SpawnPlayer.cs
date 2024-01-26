@@ -46,6 +46,7 @@ public class SpawnPlayer : MonoBehaviour
         player.GetComponent<SpeedBlock>().statusTextScript = statusTextScript;
         player.GetComponent<FirePowerBlock>().statusTextScript = statusTextScript;
         player.GetComponent<DiePlayer>().loseScreen = loseScreen;
+        winScreen.GetComponent<WinPanel>().player = player; 
         shootEventInstance.SetShootInstances(player.GetComponentsInChildren<Shoot>());
         dashButton.onClick.AddListener(player.GetComponent<PlayerMovement>().Dash);
         gameManagerInstance.playerMovementInstance = player.GetComponent<PlayerMovement>();

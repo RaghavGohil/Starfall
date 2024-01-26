@@ -12,6 +12,7 @@ internal sealed class StartScreen : MonoBehaviour
     GameObject infoPanel;
     [SerializeField]
     GameObject settingsPanel;
+    [SerializeField]AudioSource audioSrc;
 
     void Awake()
     {
@@ -27,7 +28,10 @@ internal sealed class StartScreen : MonoBehaviour
     public void Story()
     {
         PlaySound();
-        Fader.instance.FadeOut(()=> { SceneManager.LoadScene("LevelSelection"); });
+        LeanTween.value(gameObject, (value) => { audioSrc.volume = value; },1f,0f,0.2f);
+        Fader.instance.FadeOut(()=> { 
+            SceneManager.LoadScene("LevelSelection");
+        });
     }
     public void Info()
     {

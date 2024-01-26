@@ -14,9 +14,13 @@ public class WinPanel : MonoBehaviour
     [SerializeField]
     CanvasGroup gameControlCG;
 
+    [HideInInspector]public GameObject player;
+
     private void Start()
     {
         gameControlCG.interactable = false;
+        player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        player.GetComponent<PlayerMovement>().enabled = false;
         AudioManager.instance.PlayInGame("win");
         winPanelCG = GetComponent<CanvasGroup>();
         LevelManager.UnlockLevel(levelToLoad - 1);
