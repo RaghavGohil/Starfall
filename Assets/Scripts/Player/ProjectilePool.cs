@@ -12,6 +12,7 @@ internal sealed class ProjectilePool : MonoBehaviour
     static Stack<GameObject> projectilePool;
     static int numProjectiles;
     static int used;
+    static object poolLock = new object();
 
     // Start is called before the first frame update
     void Start()
@@ -21,7 +22,6 @@ internal sealed class ProjectilePool : MonoBehaviour
         projectilePool = new Stack<GameObject>();
         CreateProjectiles();
     }
-
     void CreateProjectiles()
     {
         for (int i = 0; i < numProjectiles; i++)
@@ -34,22 +34,30 @@ internal sealed class ProjectilePool : MonoBehaviour
 
     public static GameObject GetProjectile(Vector3 pos,Quaternion rotation) 
     {
-        if (used < numProjectiles) 
-        {
-            GameObject projectile = projectilePool.Pop();
-            projectile.SetActive(true);
-            projectile.transform.position = pos;
-            projectile.transform.rotation = rotation;
-            used++;
-            return projectile;
+        lock (poolLock) 
+        { 
+            if (used < numProjectiles) 
+            {
+                GameObject projectile = projectilePool.Pop();
+                projectile.SetActive(true);
+                projectile.transform.position = pos;
+                projectile.transform.rotation = rotation;
+                used++;
+                return projectile;
+            }
+            return null;
         }
-        return null;
+        
     }
 
     public static void ResetProjectile(GameObject p) 
     {
-        p.SetActive(false);
-        projectilePool.Push(p);
-        used--;
+        lock (poolLock) 
+        {
+            p.SetActive(false);
+            projectilePool.Push(p);
+            used--;
+ 
+        }
     } 
 }

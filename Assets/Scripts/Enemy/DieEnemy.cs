@@ -5,7 +5,6 @@ using UnityEngine;
 public class DieEnemy : MonoBehaviour,IDie
 {
     [SerializeField] LayerMask layerMask;
-    [HideInInspector] public WaveSystem waveSystemInstance;
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision != null)
@@ -22,9 +21,10 @@ public class DieEnemy : MonoBehaviour,IDie
         Destroy(GetComponent<EnemyAI>());
         GetComponent<BoxCollider2D>().enabled = false;
         GetComponent<SpriteRenderer>().enabled = false;
+        StatController.instance.sceneScoreAmount += 20;
+        StatController.instance.SetScoreText();
         GetComponent<Drop>().DropStuff();
         StartCoroutine(CineMachineCameraShaker.Instance.ShakeOnce(2f, 0.2f));
-        waveSystemInstance.CheckGenerateWave();
     }
 
     bool IsOnLayer(GameObject obj, LayerMask layerMask)

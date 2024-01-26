@@ -25,6 +25,10 @@ public class WinPanel : MonoBehaviour
     {
         SceneManager.LoadScene($"Level{levelToLoad}");
     }
+    public void EndGame() 
+    {
+        SceneManager.LoadScene("End");
+    }
     public void ReplayLevel() 
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);

@@ -43,11 +43,18 @@ public class WaveSystem : MonoBehaviour
     {
         currentEnemies = new List<Health>();
         currentIndex = 0;
+        GenerateWave();
     }
+
+    private void LateUpdate()
+    {
+        CheckGenerateWave();    
+    }
+
     public void CheckGenerateWave() 
     {
         if (currentEnemies == null) return;
-        int deadCount = 1;
+        int deadCount = 0;
         for(int i = 0;i<currentEnemies.Count;i++) 
         {
             if (currentEnemies[i].aliveStatus == Health.State.Dead)
@@ -55,7 +62,6 @@ public class WaveSystem : MonoBehaviour
                 deadCount++;
             }
         }
-        print(deadCount);
         if(deadCount >= currentEnemies.Count)
         {
             currentIndex++;
@@ -73,9 +79,6 @@ public class WaveSystem : MonoBehaviour
 
         waveIndicatorCG.gameObject.SetActive(true);
         gameControlCG.interactable = false;
-
-        if (waveIndicatorTween != null)
-            LeanTween.cancel(waveIndicatorTween.id);
         waveIndicatorTween = LeanTween.value(gameObject, (value) => {  waveIndicatorCG.alpha = value; }, 0f,1f,waveIndicatorTweenTime).setEase(LeanTweenType.easeInOutCubic).setLoopPingPong(1)
             .setOnComplete(() => {waveIndicatorCG.gameObject.SetActive(false); gameControlCG.interactable = true; });
 
@@ -89,7 +92,6 @@ public class WaveSystem : MonoBehaviour
                     : Random.Range(-range, range);
                 position = new Vector2(x, y);
                 GameObject go = Instantiate(enemy.prefab, position, new Quaternion(transform.rotation.x, transform.rotation.y, Random.Range(0f, 1f), transform.rotation.w), transform);
-                go.GetComponent<DieEnemy>().waveSystemInstance = this;
                 currentEnemies.Add(go.GetComponent<Health>()); // or should we get powers by dashing through the enemies?
             }
         }

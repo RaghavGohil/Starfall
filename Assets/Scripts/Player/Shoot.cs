@@ -20,8 +20,7 @@ internal sealed class Shoot : MonoBehaviour
 {
     GameObject shooter;
 
-    [SerializeField] List<Projectile> activeProjectiles;
-    [HideInInspector]public List<Projectile> removeList;
+    [SerializeField] static List<Projectile> activeProjectiles;
 
     public int fireRate; // how many projectiles in one second
     float timeCount;
@@ -33,7 +32,6 @@ internal sealed class Shoot : MonoBehaviour
         timeCount = 1f;
         hasPressedFire = false;
         activeProjectiles = new List<Projectile>();
-        removeList = new List<Projectile>();
         shooter = transform.gameObject;
     }
 
@@ -76,11 +74,10 @@ internal sealed class Shoot : MonoBehaviour
     {
         if (activeProjectiles.Count != 0) 
         {
-            foreach (Projectile projectile in activeProjectiles) 
+            /**foreach (Projectile projectile in activeProjectiles) 
             {
                 if (projectile.obj.GetComponent<Bullet>().isDone) 
                 { 
-                    ProjectilePool.ResetProjectile(projectile.obj);
                     removeList.Add(projectile);
                     projectile.obj.GetComponent<Bullet>().isDone = false;
                 }
@@ -89,8 +86,18 @@ internal sealed class Shoot : MonoBehaviour
             foreach (Projectile projectile in removeList)
             {
                 activeProjectiles.Remove(projectile);
+                ProjectilePool.ResetProjectile(projectile.obj);
             }
-            removeList.Clear();
+            removeList.Clear();**/
+            foreach (Projectile projectile in activeProjectiles.ToList()) 
+            {
+                if (projectile.obj.GetComponent<Bullet>().isDone) 
+                { 
+                    ProjectilePool.ResetProjectile(projectile.obj);
+                    activeProjectiles.Remove(projectile);
+                    projectile.obj.GetComponent<Bullet>().isDone = false;
+                }
+            }
         }
     }
 }

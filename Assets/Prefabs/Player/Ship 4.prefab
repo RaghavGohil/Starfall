@@ -5204,7 +5204,7 @@ MonoBehaviour:
   ship: {fileID: 1044789555718227766}
   smoke: {fileID: 1044789556114137584}
   max_move_speed: 100
-  min_move_speed: 80
+  min_move_speed: 90
   speedBoostAmount: 150
   rot_speed: 10
   dash_speed: 550

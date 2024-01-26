@@ -4961,7 +4961,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ece72a61ae963d41b34650be42399ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 20
+  hp: 15
   deathParticles:
   - {fileID: 2981569035968211830}
   disableObjects: []

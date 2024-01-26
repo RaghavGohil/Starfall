@@ -209,7 +209,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ece72a61ae963d41b34650be42399ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 100
+  hp: 20
   deathParticles:
   - {fileID: 2397038795001325521}
   - {fileID: 7432789113231810196}
@@ -233,6 +233,7 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 512
+  waveSystemInstance: {fileID: 0}
 --- !u!50 &-3910037134709572446
 Rigidbody2D:
   serializedVersion: 4

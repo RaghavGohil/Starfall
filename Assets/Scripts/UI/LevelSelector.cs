@@ -4,7 +4,6 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using Helper;
 
 internal sealed class LevelSelector : MonoBehaviour
 {
@@ -17,7 +16,8 @@ internal sealed class LevelSelector : MonoBehaviour
 
     [SerializeField] AsyncLoadManager loadManager;
 
-    void Awake()
+
+    void Start()
     {
         shopShipsMenu.SetActive(false);
         SetButtons();
@@ -25,12 +25,14 @@ internal sealed class LevelSelector : MonoBehaviour
 
     void SetButtons()
     {
-        for(int i=0;i<buttons.Length;i++) 
+        for (int i = 0; i < buttons.Length; i++)
         {
             buttons[i].interactable = LevelManager.levelsUnlocked[i];
-            buttons[i].GetComponentInChildren<TMP_Text>().text = LevelManager.levelsUnlocked[i]?"play":"locked";
+            buttons[i].GetComponentInChildren<TMP_Text>().text = LevelManager.levelsUnlocked[i] ? "play" : "locked";
         }
     }
+
+    
 
     public void PlayLevel(int i) 
     {
