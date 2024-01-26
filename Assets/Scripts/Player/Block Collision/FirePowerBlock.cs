@@ -1,4 +1,5 @@
 using System.Collections;
+using Game.Sound;
 using UnityEngine;
 
 internal sealed class FirePowerBlock : MonoBehaviour
@@ -20,6 +21,7 @@ internal sealed class FirePowerBlock : MonoBehaviour
         {
             if (collision.CompareTag("firePowerBlock") && (GetComponent<PlayerMovement>().is_dashing == true || GetComponent<SpeedBlock>().speedExec))
             { 
+                AudioManager.instance.PlayInGame("powerup");
                 IDamage id = collision.GetComponent<IDamage>();
                 if(id != null ) 
                     collision.GetComponent<IDamage>().Damage(100);

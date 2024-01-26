@@ -1,3 +1,4 @@
+using Game.Sound;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -19,29 +20,32 @@ internal sealed class StartScreen : MonoBehaviour
         settingsPanel.SetActive(false);
     }
 
+    public void PlaySound() 
+    {
+        AudioManager.instance.PlayInGame("uiButtonClick");
+    }
     public void Story()
     {
-        SceneManager.LoadScene("LevelSelection");
+        PlaySound();
+        Fader.instance.FadeOut(()=> { SceneManager.LoadScene("LevelSelection"); });
     }
-    public void FreeStyle()
-    {
-        //-
-    }
-
     public void Info()
     {
         infoPanel.SetActive(true);
         menuPanel.SetActive(false);
+        PlaySound();
     }
 
     public void Settings()
     {
         settingsPanel.SetActive(true);
         menuPanel.SetActive(false);
+        PlaySound();
     }
 
     public void Back()
     {
         Awake();
+        PlaySound();
     }
 }

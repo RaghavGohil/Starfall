@@ -1,3 +1,4 @@
+using Game.Sound;
 using Helper;
 using System.Collections;
 using System.Collections.Generic;
@@ -54,6 +55,7 @@ internal sealed class Shoot : MonoBehaviour
             timeCount += Time.fixedDeltaTime * fireRate;
             if (timeCount > 1f)
             {
+                AudioManager.instance.PlayInGame("shoot");
                 GameObject _shooter = ProjectilePool.GetProjectile(shooter.transform.position, transform.rotation);
                 if (_shooter != null) 
                 {

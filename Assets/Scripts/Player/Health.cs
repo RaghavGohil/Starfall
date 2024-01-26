@@ -1,3 +1,4 @@
+using Game.Sound;
 using UnityEngine;
 
 public class Health : MonoBehaviour,IDamage
@@ -50,6 +51,7 @@ public class Health : MonoBehaviour,IDamage
     {
         hp -= amount;
         hp = Mathf.Clamp(hp, 0, 100);
+        AudioManager.instance.PlayInGame("bullet hit");
         SetText();
         if (hp <= 0 && aliveStatus == State.Alive) 
         {

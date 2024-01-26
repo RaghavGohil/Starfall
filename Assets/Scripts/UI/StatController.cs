@@ -15,7 +15,7 @@ internal sealed class StatController : MonoBehaviour
     public static StatController instance { get; private set; }
 
     int sceneCoinAmount;
-    public int sceneScoreAmount;
+    [HideInInspector]public int sceneScoreAmount;
     [SerializeField]int setHighScoreOfIndex;
 
     private void Awake()

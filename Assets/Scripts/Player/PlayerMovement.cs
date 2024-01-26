@@ -1,3 +1,4 @@
+using Game.Sound;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -90,6 +91,7 @@ internal sealed class PlayerMovement : MonoBehaviour
         {
             is_dashing = true;
             can_dash = false;
+            AudioManager.instance.PlayInGame("dash");
             StartCoroutine(ReInitializeDash());
         }
     }

@@ -22,8 +22,6 @@ namespace Game.Sound
 
         public static AudioManager instance;
 
-        public bool increasingAmbientVolume;
-
         [SerializeField]
         Sound[] gameSounds;
 
@@ -48,7 +46,6 @@ namespace Game.Sound
 
         public void PlayInGame(string sound)
         {
-
             bool hasSound = false;
             
             if(gameSounds == null)

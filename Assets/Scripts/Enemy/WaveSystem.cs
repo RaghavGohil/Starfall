@@ -1,3 +1,4 @@
+using Game.Sound;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -76,6 +77,7 @@ public class WaveSystem : MonoBehaviour
         currentEnemies.Clear();
 
         waveIndicatorText.text = "WAVE " + (currentIndex+1).ToString();
+        AudioManager.instance.PlayInGame("wave indicator");
 
         waveIndicatorCG.gameObject.SetActive(true);
         gameControlCG.interactable = false;

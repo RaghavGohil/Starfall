@@ -1,3 +1,4 @@
+using Game.Sound;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -16,6 +17,7 @@ public class WinPanel : MonoBehaviour
     private void Start()
     {
         gameControlCG.interactable = false;
+        AudioManager.instance.PlayInGame("win");
         winPanelCG = GetComponent<CanvasGroup>();
         LevelManager.UnlockLevel(levelToLoad - 1);
         LeanTween.value(gameObject, (value) => { winPanelCG.alpha = value; }, winPanelCG.alpha, 1f, tweenTime);

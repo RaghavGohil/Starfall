@@ -1,4 +1,5 @@
 /* if anything is colliding to the object, it dies */
+using Game.Sound;
 using UnityEngine;
 
 internal sealed class DiePlayer : MonoBehaviour,IDie
@@ -24,6 +25,7 @@ internal sealed class DiePlayer : MonoBehaviour,IDie
         GetComponent<BoxCollider2D>().enabled = false;
         GetComponent<Rigidbody2D>().velocity = Vector3.zero;
         GetComponent<Rigidbody2D>().angularVelocity = 0f;
+        AudioManager.instance.PlayInGame("die");
         loseScreen.SetActive(true);
         StartCoroutine(CineMachineCameraShaker.Instance.ShakeOnce(2f, 0.2f));
     }

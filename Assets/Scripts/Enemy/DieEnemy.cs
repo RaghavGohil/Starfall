@@ -1,3 +1,4 @@
+using Game.Sound;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -23,6 +24,7 @@ public class DieEnemy : MonoBehaviour,IDie
         GetComponent<SpriteRenderer>().enabled = false;
         StatController.instance.sceneScoreAmount += 20;
         StatController.instance.SetScoreText();
+        AudioManager.instance.PlayInGame("die");
         GetComponent<Drop>().DropStuff();
         StartCoroutine(CineMachineCameraShaker.Instance.ShakeOnce(2f, 0.2f));
     }

@@ -7,8 +7,6 @@ internal sealed class GameManager : MonoBehaviour
 {
     [SerializeField] DialogueScreen dialogueScreen;
     [HideInInspector] public PlayerMovement playerMovementInstance;
-    [SerializeField] CanvasGroup gameControlCG;
-    LTDescr gameControlTween;
 
     private void Awake()
     {
@@ -20,7 +18,7 @@ internal sealed class GameManager : MonoBehaviour
     }
     internal IEnumerator StartSequence() 
     {
-        yield return new WaitForSeconds(dialogueScreen.messageTime*dialogueScreen.messages.Length);
+        yield return new WaitUntil(()=>!dialogueScreen.isExecuting);
         playerMovementInstance.StartMovement();
         GetComponent<WaveSystem>().enabled = true;
     }

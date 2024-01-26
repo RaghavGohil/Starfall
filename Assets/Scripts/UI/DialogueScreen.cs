@@ -1,3 +1,4 @@
+using Game.Sound;
 using System;
 using System.Collections;
 using TMPro;
@@ -23,6 +24,7 @@ internal sealed class DialogueScreen : MonoBehaviour
 
     LeanTweenType tweenType;
     float tweenTime;
+    public bool isExecuting {  get; private set; }
 
     [SerializeField] float moveOffset;
     public float messageTime; 
@@ -33,6 +35,7 @@ internal sealed class DialogueScreen : MonoBehaviour
     {
         tweenTime = 1f;
         tweenType = LeanTweenType.easeOutCubic;
+        isExecuting = true;
 
         cinematicBarRect1 = cinematicBar1.GetComponent<RectTransform>();
         cinematicBarRect2 = cinematicBar2.GetComponent<RectTransform>();
@@ -54,15 +57,24 @@ internal sealed class DialogueScreen : MonoBehaviour
         while (count < message.Length) 
         {
             dialogueText.text = message[count];
+            AudioManager.instance.PlayInGame("dialogue");
             yield return new WaitForSeconds(duration);
             count++;
         }
         CloseDialogueScreen();
+        isExecuting = false;
     }
 
     void DeactivateDialogueScreen()
     {
         dialogueScreen.SetActive(false);
+    }
+
+    public void Skip() 
+    {
+        StopCoroutine("StartSequence");
+        CloseDialogueScreen();
+        isExecuting = false;
     }
 
     public void OpenDialogueScreen() 

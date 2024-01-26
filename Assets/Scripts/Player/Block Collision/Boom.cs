@@ -1,3 +1,4 @@
+using Game.Sound;
 using System.Collections;
 using UnityEngine;
 
@@ -39,6 +40,7 @@ internal sealed class Boom : MonoBehaviour,IDie
         GetComponent<SpriteRenderer>().enabled = false;
         GetComponent<BoxCollider2D>().enabled = false;
         GetComponentInChildren<ParticleSystem>().Play();
+        AudioManager.instance.PlayInGame("explosion");
         yield return new WaitForSeconds(GetComponentInChildren<ParticleSystem>().main.duration);
         Destroy(gameObject);
     }

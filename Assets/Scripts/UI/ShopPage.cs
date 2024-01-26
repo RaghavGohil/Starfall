@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using Game.Sound;
 
 internal sealed class ShopPage : MonoBehaviour
 {
@@ -32,6 +33,7 @@ internal sealed class ShopPage : MonoBehaviour
 
     public void Buy() 
     {
+        AudioManager.instance.PlayInGame("uiButtonClick");
         if (PurchaseShipsManager.purchasedShips[ship.id] == true)
         {
             PurchaseShipsManager.equippedShipId = ship.id;

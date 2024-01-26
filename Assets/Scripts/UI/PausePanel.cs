@@ -45,6 +45,6 @@ public class PausePanel : MonoBehaviour
     public void AllLevels()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene("LevelSelection");
+        Fader.instance.FadeOut(()=> { SceneManager.LoadScene("LevelSelection"); });
     }
 }

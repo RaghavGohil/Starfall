@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEngine.SceneManagement;
 using Cinemachine;
 using EZCameraShake;
+using Game.Sound;
 
 internal sealed class SpeedBlock : MonoBehaviour
 {
@@ -52,6 +53,7 @@ internal sealed class SpeedBlock : MonoBehaviour
         {
             if ((playerMovementScript.is_dashing || speedExec == true) && collider.CompareTag("speedBlock"))
             {
+                AudioManager.instance.PlayInGame("powerup");
                 if (!speedExec)
                     StartCoroutine(speedBlock());
                 IDamage id = collider.GetComponent<IDamage>();

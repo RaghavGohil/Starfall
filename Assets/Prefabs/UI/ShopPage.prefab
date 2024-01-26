@@ -502,11 +502,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e057e8f6c3dbfc141a7d87e55c1d7bbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ship: {fileID: 11400000, guid: 1845a7a61cf805242853f991c72d1f33, type: 2}
   shipName: {fileID: 5519244713205039300}
   description: {fileID: 5519244714663575044}
   shipImage: {fileID: 5519244713261729779}
   buyButtonText: {fileID: 5519244714144872410}
+  coinUpdaterInstance: {fileID: 0}
   shopShipsScript: {fileID: 0}
 --- !u!1 &5519244714663575042
 GameObject:

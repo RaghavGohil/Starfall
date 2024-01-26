@@ -1,3 +1,4 @@
+using Game.Sound;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -13,6 +14,7 @@ public class LosePanel : MonoBehaviour
     private void Start()
     {
         gameControlCG.interactable = false;
+        AudioManager.instance.PlayInGame("lose");
         losePanelCG = GetComponent<CanvasGroup>();
         LeanTween.value(gameObject, (value) => { losePanelCG.alpha = value; },losePanelCG.alpha,1f,tweenTime);
     }
@@ -20,5 +22,10 @@ public class LosePanel : MonoBehaviour
     public void ReplayLevel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void AllLevels()
+    {
+        Fader.instance.FadeOut(()=> { SceneManager.LoadScene("LevelSelection"); });
     }
 }

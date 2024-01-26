@@ -39,9 +39,9 @@ internal sealed class LevelSelector : MonoBehaviour
             StartCoroutine(loadManager.LoadAsync(i));
     }
 
-    public void Back() 
+    public void Back()
     {
-        SceneManager.LoadScene("Menu");
+        Fader.instance.FadeOut(()=>{ SceneManager.LoadScene("Menu"); });
     }
 
     public void ShopShips() 
