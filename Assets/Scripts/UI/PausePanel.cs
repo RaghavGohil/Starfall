@@ -11,6 +11,8 @@ public class PausePanel : MonoBehaviour
     [SerializeField]
     CanvasGroup gameControlCG;
     LTDescr pauseTweenInstance;
+    [SerializeField] AsyncLoadManager asyncLoadManager;
+    [SerializeField] AudioSource ambientAudioSource;
 
     private void Awake()
     {
@@ -20,6 +22,7 @@ public class PausePanel : MonoBehaviour
     public void OpenPauseMenu()
     {
         gameControlCG.interactable = false;
+        ambientAudioSource.Pause();
         if (pauseTweenInstance != null)
             LeanTween.cancel(pauseTweenInstance.id);
         pauseTweenInstance = LeanTween.value(gameObject, (value) => { pauseCG.alpha = value; }, pauseCG.alpha, 1f, tweenTime)
@@ -28,6 +31,7 @@ public class PausePanel : MonoBehaviour
 
     public void ResumeLevel()
     {
+        ambientAudioSource.UnPause();
         gameControlCG.interactable = true;
         Time.timeScale = 1f;
         if (pauseTweenInstance != null)
@@ -39,7 +43,7 @@ public class PausePanel : MonoBehaviour
     public void ReplayLevel()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        StartCoroutine(asyncLoadManager.LoadAsync(SceneManager.GetActiveScene().buildIndex-1));
     }
 
     public void AllLevels()

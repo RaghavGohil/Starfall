@@ -25,6 +25,13 @@ internal sealed class StartScreen : MonoBehaviour
     {
         AudioManager.instance.PlayInGame("uiButtonClick");
     }
+
+    public void ReplayVideo() 
+    {
+        Fader.instance.FadeOut(()=> { 
+            SceneManager.LoadScene("Start");
+        });
+    }
     public void Story()
     {
         PlaySound();

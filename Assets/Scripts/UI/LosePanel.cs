@@ -10,10 +10,13 @@ public class LosePanel : MonoBehaviour
     CanvasGroup losePanelCG;
     [SerializeField]
     CanvasGroup gameControlCG;
+    [SerializeField] AsyncLoadManager asyncLoadManager;
+    [SerializeField] AudioSource ambientAudioSource;
 
     private void Start()
     {
         gameControlCG.interactable = false;
+        ambientAudioSource.volume = 0f;
         AudioManager.instance.PlayInGame("lose");
         losePanelCG = GetComponent<CanvasGroup>();
         LeanTween.value(gameObject, (value) => { losePanelCG.alpha = value; },losePanelCG.alpha,1f,tweenTime);
@@ -21,7 +24,7 @@ public class LosePanel : MonoBehaviour
 
     public void ReplayLevel()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        StartCoroutine(asyncLoadManager.LoadAsync(SceneManager.GetActiveScene().buildIndex-1));
     }
 
     public void AllLevels()

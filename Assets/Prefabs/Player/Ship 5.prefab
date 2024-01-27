@@ -225,8 +225,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43120a5694757da4ebe4703fa10b033d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  activeProjectiles: []
-  removeList: []
   fireRate: 8
 --- !u!1 &1044789555633598842
 GameObject:
@@ -347,7 +345,7 @@ MonoBehaviour:
   min_move_speed: 90
   speedBoostAmount: 150
   rot_speed: 10
-  dash_speed: 550
+  dash_speed: 600
   dash_cooldown: 3
   dash_time: 0.2
 --- !u!61 &1044789555700351430

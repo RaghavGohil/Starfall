@@ -16,9 +16,14 @@ public class WinPanel : MonoBehaviour
 
     [HideInInspector]public GameObject player;
 
+    [SerializeField] AsyncLoadManager asyncLoadManager;
+
+    [SerializeField] AudioSource ambientAudioSource;
+
     private void Start()
     {
         gameControlCG.interactable = false;
+        ambientAudioSource.volume = 0f;
         player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         player.GetComponent<PlayerMovement>().enabled = false;
         AudioManager.instance.PlayInGame("win");
@@ -29,14 +34,14 @@ public class WinPanel : MonoBehaviour
 
     public void NextLevel() 
     {
-        SceneManager.LoadScene($"Level{levelToLoad}");
+        StartCoroutine(asyncLoadManager.LoadAsync(levelToLoad));
     }
     public void EndGame() 
     {
-        SceneManager.LoadScene("End");
+        Fader.instance.FadeOut(() => { SceneManager.LoadScene("End"); });
     }
     public void ReplayLevel() 
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        StartCoroutine(asyncLoadManager.LoadAsync(SceneManager.GetActiveScene().buildIndex-1));
     }
 }
