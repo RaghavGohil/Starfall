@@ -21,27 +21,43 @@ namespace Game.Sound
     {
 
         public static AudioManager instance;
+        [HideInInspector] public static bool canPlayAmbientMusic = true;
 
         [SerializeField]
         Sound[] gameSounds;
+        [SerializeField]AudioSource ambientAudioSource;
 
         void Awake()
         {
-
-            if(instance == null)
+            if (instance == null)
                 instance = this;
             else
                 Destroy(instance);
 
-            foreach(Sound s in gameSounds)
+            foreach (Sound s in gameSounds)
             {
                 s.source = gameObject.AddComponent<AudioSource>();
-                s.source.volume = s.volume; 
+                s.source.volume = s.volume;
                 s.source.mute = s.mute;
                 s.source.loop = s.loop;
                 s.source.playOnAwake = s.playOnAwake;
                 s.source.clip = s.clip;
             }
+        }
+        private void Start()
+        {
+            if(!canPlayAmbientMusic)
+                ambientAudioSource.volume = 0f;
+        }
+        public void PlayAmbientAudio() 
+        {
+            canPlayAmbientMusic = true;
+            ambientAudioSource.volume = 1f;
+        }
+        public void PauseAmbientAudio()
+        {
+           canPlayAmbientMusic = false;
+           ambientAudioSource.volume = 0f;
         }
 
         public void PlayInGame(string sound)

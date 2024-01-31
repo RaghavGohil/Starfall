@@ -35,7 +35,7 @@ internal sealed class StartScreen : MonoBehaviour
     public void Story()
     {
         PlaySound();
-        LeanTween.value(gameObject, (value) => { audioSrc.volume = value; },1f,0f,0.2f);
+        LeanTween.value(gameObject, (value) => { audioSrc.volume = value; },audioSrc.volume,0f,0.2f);
         Fader.instance.FadeOut(()=> { 
             SceneManager.LoadScene("LevelSelection");
         });

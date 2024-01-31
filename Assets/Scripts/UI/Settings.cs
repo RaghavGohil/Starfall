@@ -1,3 +1,4 @@
+using Game.Sound;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.UI;
@@ -18,11 +19,13 @@ internal sealed class Settings : MonoBehaviour
     {
         if (musicToggle.isOn)
         {
-
+            if(AudioManager.instance != null)
+                AudioManager.instance.PlayAmbientAudio();
         }
         else 
         {
-        
+            if(AudioManager.instance != null)
+                AudioManager.instance.PauseAmbientAudio();
         }
     }
 

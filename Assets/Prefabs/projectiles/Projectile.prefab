@@ -125,7 +125,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletSpeed: 10
-  time: 1.7
+  time: 3
   damageAmount: 5
   isDone: 0
   layerMask:

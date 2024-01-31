@@ -9,6 +9,7 @@ public class AnimationSequencer : MonoBehaviour
     [SerializeField] float panelTime;
     [SerializeField] float endFrameTime;
     [SerializeField] string sceneToLoad;
+    [SerializeField] bool shouldFadeAtEnd;
     int index;
     private void Start()
     {
@@ -29,11 +30,13 @@ public class AnimationSequencer : MonoBehaviour
         {
             DisableAllPanels(); 
             animationPanels[index].SetActive(true);
-            AudioManager.instance.PlayInGame("dialogue");
             yield return new WaitForSeconds(panelTime);
             index++;
         }
         yield return new WaitForSeconds(endFrameTime);
-        Fader.instance.FadeOut(() => { SceneManager.LoadScene(sceneToLoad); });
+        if(shouldFadeAtEnd)
+            Fader.instance.FadeOut(() => { SceneManager.LoadScene(sceneToLoad); });
+        else
+            SceneManager.LoadScene(sceneToLoad);
     }
 }

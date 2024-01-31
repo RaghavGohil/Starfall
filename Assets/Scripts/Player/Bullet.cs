@@ -9,6 +9,7 @@ internal sealed class Bullet : MonoBehaviour
     [SerializeField] LayerMask layerMask;
     [SerializeField] GameObject hitParticleGO;
     float timeElapsed;
+    bool bulletIsOutOfView;
     private void Start()
     {
         isDone = false;
@@ -24,9 +25,19 @@ internal sealed class Bullet : MonoBehaviour
         }
     }
 
+    private void OnBecameInvisible()
+    {
+        bulletIsOutOfView = true;
+    }
+
+    private void OnBecameVisible()
+    {
+        bulletIsOutOfView = false;
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision != null) 
+        if (collision != null && !bulletIsOutOfView) 
         {
             if (IsOnLayer(collision.gameObject, layerMask))
             { 

@@ -139,8 +139,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   trails: {fileID: 1162369289621838044}
-  speed: 1
-  rotateAmount: 10
+  speed: 1.25
+  rotateAmount: 12
   totalAngle: 150
   rayCastDistance: 2
   captureAmount: 10
@@ -233,7 +233,6 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 512
-  waveSystemInstance: {fileID: 0}
 --- !u!50 &-3910037134709572446
 Rigidbody2D:
   serializedVersion: 4
@@ -303,7 +302,7 @@ Transform:
   - {fileID: 5415357603678902812}
   - {fileID: 1513444688253671916}
   m_Father: {fileID: 3730310176155184866}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2998798980720833282
 GameObject:
@@ -15030,7 +15029,7 @@ TrailRenderer:
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
   m_Emitting: 1
---- !u!1 &6863916803900701992
+--- !u!1 &6458551112191692619
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -15038,8 +15037,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 9129088781091122359}
-  - component: {fileID: 927168133624424079}
+  - component: {fileID: 609341178399722944}
+  - component: {fileID: 1687554871997856262}
   m_Layer: 6
   m_Name: EnemyMarker
   m_TagString: Untagged
@@ -15047,28 +15046,28 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &9129088781091122359
+--- !u!4 &609341178399722944
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6863916803900701992}
+  m_GameObject: {fileID: 6458551112191692619}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 10, y: 10, z: 1}
+  m_LocalScale: {x: 6, y: 6, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3730310176155184866}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &927168133624424079
+--- !u!212 &1687554871997856262
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6863916803900701992}
+  m_GameObject: {fileID: 6458551112191692619}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -15144,7 +15143,7 @@ Transform:
   m_Children:
   - {fileID: 6862471699801890742}
   m_Father: {fileID: 3730310176155184866}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7851480617073425034
 GameObject:
@@ -15174,9 +15173,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 609341178399722944}
   - {fileID: 4148239669772711186}
   - {fileID: 1162369289621838019}
-  - {fileID: 9129088781091122359}
   - {fileID: 4521971942401810862}
   m_Father: {fileID: 1162369288316747563}
   m_RootOrder: 0
@@ -15225,6 +15224,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43120a5694757da4ebe4703fa10b033d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  activeProjectiles: []
-  removeList: []
   fireRate: 8

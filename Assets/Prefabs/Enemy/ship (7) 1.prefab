@@ -489,7 +489,6 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 512
-  waveSystemInstance: {fileID: 0}
 --- !u!50 &-2228465226529050797
 Rigidbody2D:
   serializedVersion: 4
@@ -559,7 +558,7 @@ Transform:
   - {fileID: 3140331491514727875}
   - {fileID: 134113563302544268}
   m_Father: {fileID: 4982387159273744270}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2280741460993228237
 GameObject:
@@ -10215,7 +10214,7 @@ Transform:
   m_Children:
   - {fileID: 941860475832466972}
   m_Father: {fileID: 4982387159273744270}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4220592048856345840
 GameObject:
@@ -10245,10 +10244,10 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 5716324714971477687}
   - {fileID: 670564214695094611}
   - {fileID: 1162369289621838019}
   - {fileID: 637645513086746319}
-  - {fileID: 5716324714971477687}
   m_Father: {fileID: 1162369288316747563}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -10278,11 +10277,11 @@ Transform:
   m_GameObject: {fileID: 4461917657230785597}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 10, y: 10, z: 1}
+  m_LocalScale: {x: 6, y: 6, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4982387159273744270}
-  m_RootOrder: 3
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &6553779726380385735
 SpriteRenderer:
@@ -10413,8 +10412,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43120a5694757da4ebe4703fa10b033d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  activeProjectiles: []
-  removeList: []
   fireRate: 8
 --- !u!1 &6816691185642905001
 GameObject:
@@ -10447,7 +10444,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4982387159273744270}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!198 &3217052474185036102
 ParticleSystem:
