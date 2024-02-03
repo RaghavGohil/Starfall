@@ -45,6 +45,7 @@ public class SpawnPlayer : MonoBehaviour
         player.GetComponent<SpeedBlock>().speedLines = speedLines;
         player.GetComponent<SpeedBlock>().statusTextScript = statusTextScript;
         player.GetComponent<FirePowerBlock>().statusTextScript = statusTextScript;
+        player.GetComponent<HeartBlock>().statusTextScript = statusTextScript;
         player.GetComponent<DiePlayer>().loseScreen = loseScreen;
         winScreen.GetComponent<WinPanel>().player = player; 
         shootEventInstance.SetShootInstances(player.GetComponentsInChildren<Shoot>());

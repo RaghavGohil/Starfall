@@ -19,7 +19,8 @@ internal sealed class FirePowerBlock : MonoBehaviour
     {
         if(collision != null) 
         {
-            if (collision.CompareTag("firePowerBlock") && (GetComponent<PlayerMovement>().is_dashing == true || GetComponent<SpeedBlock>().speedExec))
+            //if (collision.CompareTag("firePowerBlock") && (GetComponent<PlayerMovement>().is_dashing == true || GetComponent<SpeedBlock>().speedExec))
+            if (collision.CompareTag("firePowerBlock"))
             { 
                 AudioManager.instance.PlayInGame("powerup");
                 IDamage id = collision.GetComponent<IDamage>();

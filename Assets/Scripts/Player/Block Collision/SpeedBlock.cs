@@ -51,7 +51,8 @@ internal sealed class SpeedBlock : MonoBehaviour
     {
         if (collider != null) 
         {
-            if ((playerMovementScript.is_dashing || speedExec == true) && collider.CompareTag("speedBlock"))
+            //if ((playerMovementScript.is_dashing || speedExec == true) && collider.CompareTag("speedBlock"))
+            if (collider.CompareTag("speedBlock"))
             {
                 AudioManager.instance.PlayInGame("powerup");
                 if (!speedExec)

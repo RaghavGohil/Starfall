@@ -185,7 +185,7 @@ MonoBehaviour:
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
-  m_FillMethod: 4
+  m_FillMethod: 1
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
@@ -10996,13 +10996,15 @@ MonoBehaviour:
   - obj: {fileID: 6638238300873455201, guid: c27e495a43eb31f46b3092ba721eb263, type: 3}
     amount: 20
   - obj: {fileID: 6638238300873455201, guid: c05a2dbfef1071645a32e6f01047f328, type: 3}
-    amount: 35
+    amount: 20
   - obj: {fileID: 6638238300873455201, guid: 287f4d5fe38213849bcd45103e870eda, type: 3}
     amount: 20
   - obj: {fileID: 6638238300873455201, guid: ff793e8cc7f00ac44840f510a6d82229, type: 3}
     amount: 20
   - obj: {fileID: 6638238300873455201, guid: 94d019db85d34bc47b66591e404024e1, type: 3}
     amount: 20
+  - obj: {fileID: 6638238300873455201, guid: cc8231b951429844fa81cf7d7e401155, type: 3}
+    amount: 7
   threshold: 10
   range: 66
 --- !u!114 &1471743873
